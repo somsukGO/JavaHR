@@ -1,0 +1,19 @@
+=> register
+{
+"object": "user",
+"method": "register",
+"data": {
+        "phoneNumber": "1",
+        "password": "password"
+    }
+}
+
+=> login
+{
+"object": "user",
+"method": "login",
+"data": {
+        "phoneNumber": "1",
+        "password": "password"
+    }
+}
