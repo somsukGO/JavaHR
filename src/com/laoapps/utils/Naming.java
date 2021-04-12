@@ -105,4 +105,8 @@ public class Naming {
     public static final String page = "page";
     public static final String limit = "limit";
     public static final String keyword = "keyword";
+    public static final String hr = "hr";
+    public static final String update = "update";
+    public static final String delete = "delete";
+    public static final String employee = "employee";
 }

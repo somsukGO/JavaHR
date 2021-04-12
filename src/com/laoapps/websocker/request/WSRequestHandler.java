@@ -30,6 +30,7 @@ public class WSRequestHandler implements Runnable {
         Gson gson = new Gson();
         UsersRequestHandler usersRequestHandler = UsersRequestHandler.getInstance();
         DepartmentRequestHandler departmentRequestHandler = DepartmentRequestHandler.getInstance();
+        EmployeeRequestHandler employeeRequestHandler = EmployeeRequestHandler.getInstance();
 
         try {
             JsonObject jsonObject = gson.fromJson(message, JsonObject.class);
@@ -44,6 +45,10 @@ public class WSRequestHandler implements Runnable {
 
                 case "department":
                     webSocket.send(departmentRequestHandler.response(jsonObject));
+                    break;
+
+                case "employee":
+                    webSocket.send(employeeRequestHandler.response(jsonObject));
                     break;
 
                 default:

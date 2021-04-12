@@ -1,0 +1,46 @@
+=> create
+{
+"object": "department",
+"method": "create",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJjMzRmZmFiYS02MzkyLTQ4MTctYjczMi03MTQ0MzMwMmVmMmMiLCJpYXQiOjE2MTc5NDEwMTMsImV4cCI6MTYxNzk0MTMxMywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNzYxMTU3Y2MyIiwicGFyZW50IjoiYzc2MTE1N2NjMiJ9.5qcn_rIYLqR078E2rCpfy_soZoo3kdAfGEKgL-vbc0M",
+        "name": "Programmer",
+        "parent": "0",
+        "remark": "This is remark"
+    }
+}
+
+=> get
+{
+"object": "department",
+"method": "get",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJjMzRmZmFiYS02MzkyLTQ4MTctYjczMi03MTQ0MzMwMmVmMmMiLCJpYXQiOjE2MTc5NDEwMTMsImV4cCI6MTYxNzk0MTMxMywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNzYxMTU3Y2MyIiwicGFyZW50IjoiYzc2MTE1N2NjMiJ9.5qcn_rIYLqR078E2rCpfy_soZoo3kdAfGEKgL-vbc0M",
+        "page": 1,
+        "limit": 10,
+        "keyword": "This is remark"
+    }
+}
+
+=> update
+{
+"object": "department",
+"method": "update",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJjMzRmZmFiYS02MzkyLTQ4MTctYjczMi03MTQ0MzMwMmVmMmMiLCJpYXQiOjE2MTc5NDEwMTMsImV4cCI6MTYxNzk0MTMxMywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNzYxMTU3Y2MyIiwicGFyZW50IjoiYzc2MTE1N2NjMiJ9.5qcn_rIYLqR078E2rCpfy_soZoo3kdAfGEKgL-vbc0M",
+        "name": "Java",
+        "parent": "Oracle",
+        "remark": "This is updated department",
+        "uuid": "aebdb9b004"
+    }
+}
+
+=> delete
+{
+"object": "department",
+"method": "delete",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJjMzRmZmFiYS02MzkyLTQ4MTctYjczMi03MTQ0MzMwMmVmMmMiLCJpYXQiOjE2MTc5NDEwMTMsImV4cCI6MTYxNzk0MTMxMywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNzYxMTU3Y2MyIiwicGFyZW50IjoiYzc2MTE1N2NjMiJ9.5qcn_rIYLqR078E2rCpfy_soZoo3kdAfGEKgL-vbc0M",
+        "uuid": "aebdb9b004"
+    }
+}

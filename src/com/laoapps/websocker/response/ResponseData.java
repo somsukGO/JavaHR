@@ -13,5 +13,5 @@ public class ResponseData {
     private Profiles profile;
     private Department department;
     private ArrayList<Department> departments;
-    private int totalPage;
+    private Integer totalPage;
 }
