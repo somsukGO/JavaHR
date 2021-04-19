@@ -14,6 +14,7 @@ public class CustomInterceptor extends EmptyInterceptor {
     public String onPrepareStatement(String sql) {
 
         sql = sql.replace(Naming.DEPARTMENTS_TABLE_NAME + " ", Naming.DEPARTMENTS_TABLE_NAME + "_" + uuid + " ");
+        sql = sql.replace(Naming.ATTENDANCE_TABLE_NAME + " ", Naming.ATTENDANCE_TABLE_NAME + "_" + uuid + " ");
 
         return sql;
     }

@@ -5,13 +5,12 @@ import com.google.gson.JsonObject;
 import com.laoapps.database.connector.CustomInterceptor;
 import com.laoapps.database.connector.HibernateConnector;
 import com.laoapps.database.entity.Department;
-import com.laoapps.database.entity.Users;
 import com.laoapps.models.CheckJwtResult;
 import com.laoapps.utils.MyCommon;
 import com.laoapps.utils.Naming;
 import com.laoapps.websocker.response.Response;
 import com.laoapps.websocker.response.ResponseData;
-import com.laoapps.websocker.response.UtilsResponse;
+import com.laoapps.websocker.response.ResponseBody;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -34,11 +33,7 @@ public class DepartmentHandler {
     private final SessionFactory factory = HibernateConnector.getInstance().getFactory();
     private final Gson gson = new Gson();
 
-    public String create(JsonObject data) {
-
-        CheckJwtResult checkJwtResult = MyCommon.checkJwtResult(data, Naming.department, Naming.create);
-
-        if (!checkJwtResult.isPass()) return gson.toJson(checkJwtResult.getResponse());
+    public String create(JsonObject data, CheckJwtResult checkJwtResult) {
 
         try (Session session = factory.withOptions().interceptor(new CustomInterceptor(checkJwtResult.getCheckJwt().getParent())).openSession()) {
 
@@ -53,7 +48,7 @@ public class DepartmentHandler {
             String role = (String) session.createQuery("select role from Users where uuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
 
             if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) {
-                Response response = new Response(new UtilsResponse(Naming.department, Naming.create, Naming.fail, "Access denied", null));
+                Response response = new Response(new ResponseBody(Naming.department, Naming.create, Naming.fail, "Access denied", null));
                 MyCommon.printMessage(response.toString());
 
                 return gson.toJson(response);
@@ -75,16 +70,14 @@ public class DepartmentHandler {
             responseData.setDepartment(department);
             responseData.setJwt(checkJwtResult.getCheckJwt().getJwt());
 
-            Response response = new Response(new UtilsResponse(Naming.department, Naming.create, Naming.success,
-                    "Create department successful", responseData));
-
+            Response response = new Response(new ResponseBody(Naming.department, Naming.create, Naming.success, "successful", responseData));
             MyCommon.printMessage(response.toString());
-
             return gson.toJson(response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Response response = new Response(new UtilsResponse(Naming.department, Naming.create, Naming.fail, e.getMessage(), null));
+            Response response = new Response(new ResponseBody(Naming.department, Naming.create, Naming.fail,
+                    e.getMessage(), null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);
@@ -92,43 +85,31 @@ public class DepartmentHandler {
 
     }
 
-    public String get(JsonObject data) {
-
-        CheckJwtResult checkJwtResult = MyCommon.checkJwtResult(data, Naming.department, Naming.get);
-
-        if (!checkJwtResult.isPass()) return gson.toJson(checkJwtResult.getResponse());
+    public String get(JsonObject data, CheckJwtResult checkJwtResult) {
 
         try (Session session = factory.withOptions().interceptor(new CustomInterceptor(checkJwtResult.getCheckJwt().getParent())).openSession()) {
 
             int page = data.get(Naming.page).getAsInt();
             int limit = data.get(Naming.limit).getAsInt();
 
-            String keyword = null;
-            int keywordId = 0;
-
-            if (data.has(Naming.keyword)) {
-                if (!data.get(Naming.keyword).getAsString().isBlank()) {
-                    keyword = data.get(Naming.keyword).getAsString();
-                    try {
-                        keywordId = Integer.parseInt(keyword);
-                    } catch (Exception e) {
-                        keywordId = 0;
-                    }
-                }
-            }
+            ArrayList<Object> getKeyword = MyCommon.getKeyword(data);
+            String keyword = (String) getKeyword.get(0);
+            int keywordId = (int) getKeyword.get(1);
 
             session.beginTransaction();
 
-            String query = (keyword == null) ? "from Department" : "from Department where id like " + keywordId + " or name like '" + keyword +
-                            "' or parent like '" + keyword + "' or remark like '" + keyword + "' or createdAt like '" + keyword +
-                            "' or updatedAt like '" + keyword + "' or uuid like '" + keyword + "'";
+            String searchQuery = "from Department where id = " + keywordId + " or name like '" + keyword +
+                    "' or parent like '" + keyword + "' or remark like '" + keyword + "' or createdAt like '" + keyword +
+                    "' or updatedAt like '" + keyword + "' or uuid like '" + keyword + "'";
 
-            Long count = (Long) session.createQuery("select count(id) from Department").uniqueResult();
+            String query = (keyword == null) ? "from Department" : searchQuery;
+
+            String countQuery = (keyword == null) ? "select count(id) from Department" : "select count(id) " + searchQuery;
+            Long count = (Long) session.createQuery(countQuery).uniqueResult();
             Integer totalPage = (count.intValue() + limit - 1) / limit;
 
             @SuppressWarnings("unchecked")
-            ArrayList<Department> departments = (ArrayList<Department>) session.createQuery(query)
-                    .setFirstResult((page - 1) * limit).setMaxResults(limit).getResultList();
+            ArrayList<Department> departments = (ArrayList<Department>) session.createQuery(query).setFirstResult((page - 1) * limit).setMaxResults(limit).getResultList();
 
             session.getTransaction().commit();
 
@@ -136,17 +117,17 @@ public class DepartmentHandler {
             responseData.setDepartments(departments);
             responseData.setJwt(checkJwtResult.getCheckJwt().getJwt());
             responseData.setTotalPage(totalPage);
+            responseData.setTotalElement(count.intValue());
+            responseData.setCurrentPage(page);
+            responseData.setLimit(limit);
 
-            Response response = new Response(new UtilsResponse(Naming.department, Naming.get, Naming.success,
-                    "Get department successful", responseData));
-
+            Response response = new Response(new ResponseBody(Naming.department, Naming.get, Naming.success, "successful", responseData));
             MyCommon.printMessage(response.toString());
-
             return gson.toJson(response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Response response = new Response(new UtilsResponse(Naming.department, Naming.get, Naming.fail, e.getMessage(), null));
+            Response response = new Response(new ResponseBody(Naming.department, Naming.get, Naming.fail, e.getMessage(), null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);
@@ -154,11 +135,7 @@ public class DepartmentHandler {
 
     }
 
-    public String update(JsonObject data) {
-
-        CheckJwtResult checkJwtResult = MyCommon.checkJwtResult(data, Naming.department, Naming.update);
-
-        if (!checkJwtResult.isPass()) return gson.toJson(checkJwtResult.getResponse());
+    public String update(JsonObject data, CheckJwtResult checkJwtResult) {
 
         try (Session session = factory.withOptions().interceptor(new CustomInterceptor(checkJwtResult.getCheckJwt().getParent())).openSession()) {
 
@@ -167,7 +144,7 @@ public class DepartmentHandler {
             String role = (String) session.createQuery("select role from Users where uuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
 
             if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) {
-                Response response = new Response(new UtilsResponse(Naming.department, Naming.update, Naming.fail, "Access denied", null));
+                Response response = new Response(new ResponseBody(Naming.department, Naming.update, Naming.fail, "access denied", null));
                 MyCommon.printMessage(response.toString());
 
                 return gson.toJson(response);
@@ -188,16 +165,13 @@ public class DepartmentHandler {
             responseData.setDepartment(department);
             responseData.setJwt(checkJwtResult.getCheckJwt().getJwt());
 
-            Response response = new Response(new UtilsResponse(Naming.department, Naming.update, Naming.success,
-                    "Update department successful", responseData));
-
+            Response response = new Response(new ResponseBody(Naming.department, Naming.update, Naming.success, "successful", responseData));
             MyCommon.printMessage(response.toString());
-
             return gson.toJson(response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Response response = new Response(new UtilsResponse(Naming.department, Naming.update, Naming.fail, e.getMessage(), null));
+            Response response = new Response(new ResponseBody(Naming.department, Naming.update, Naming.fail, e.getMessage(), null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);
@@ -205,11 +179,7 @@ public class DepartmentHandler {
 
     }
 
-    public String delete(JsonObject data) {
-
-        CheckJwtResult checkJwtResult = MyCommon.checkJwtResult(data, Naming.department, Naming.delete);
-
-        if (!checkJwtResult.isPass()) return gson.toJson(checkJwtResult.getResponse());
+    public String delete(JsonObject data, CheckJwtResult checkJwtResult) {
 
         try (Session session = factory.withOptions().interceptor(new CustomInterceptor(checkJwtResult.getCheckJwt().getParent())).openSession()) {
 
@@ -218,7 +188,7 @@ public class DepartmentHandler {
             String role = (String) session.createQuery("select role from Users where uuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
 
             if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) {
-                Response response = new Response(new UtilsResponse(Naming.department, Naming.delete, Naming.fail, "Access denied", null));
+                Response response = new Response(new ResponseBody(Naming.department, Naming.delete, Naming.fail, "Access denied", null));
                 MyCommon.printMessage(response.toString());
 
                 return gson.toJson(response);
@@ -233,16 +203,13 @@ public class DepartmentHandler {
             ResponseData responseData = new ResponseData();
             responseData.setJwt(checkJwtResult.getCheckJwt().getJwt());
 
-            Response response = new Response(new UtilsResponse(Naming.department, Naming.delete, Naming.success,
-                    "Delete department successful", responseData));
-
+            Response response = new Response(new ResponseBody(Naming.department, Naming.delete, Naming.success, "successful", responseData));
             MyCommon.printMessage(response.toString());
-
             return gson.toJson(response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Response response = new Response(new UtilsResponse(Naming.department, Naming.delete, Naming.fail, e.getMessage(), null));
+            Response response = new Response(new ResponseBody(Naming.department, Naming.delete, Naming.fail, e.getMessage(), null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);

@@ -14,4 +14,7 @@ public class ResponseData {
     private Department department;
     private ArrayList<Department> departments;
     private Integer totalPage;
+    private Integer totalElement;
+    private Integer currentPage;
+    private Integer limit;
 }

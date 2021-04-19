@@ -1,0 +1,23 @@
+=> start
+{
+"object": "attendance",
+"method": "start",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
+        "description": "description",
+        "reason": "reason",
+        "attachment": "attachment"
+    }
+}
+
+=> end
+{
+"object": "attendance",
+"method": "end",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
+        "description": "description",
+        "reason": "reason",
+        "attachment": "attachment"
+    }
+}

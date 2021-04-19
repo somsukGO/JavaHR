@@ -156,8 +156,8 @@ public class TableHandler {
     private String queryCreateLeaveTable(String uuid) {
         return "CREATE TABLE IF NOT EXISTS " + Naming.LEAVES_TABLE_NAME + "_" + uuid + "(" +
                 Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
-                Naming.START + " TIMESTAMP NULL, " +
-                Naming.END + " TIMESTAMP NULL, " +
+                Naming.START_TIME + " TIMESTAMP NOT NULL, " +
+                Naming.END_TIME + " TIMESTAMP NULL, " +
                 Naming.DESCRIPTION + " VARCHAR(255) NULL, " +
                 Naming.CREATED_AT + " DATETIME NULL, " +
                 Naming.UPDATED_AT + " TIMESTAMP NULL, " +
@@ -185,11 +185,14 @@ public class TableHandler {
     private String queryCreateAttendanceTable(String uuid) {
         return "CREATE TABLE IF NOT EXISTS " + Naming.ATTENDANCE_TABLE_NAME + "_" + uuid + "(" +
                 Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
-                Naming.START + " DATETIME NULL, " +
-                Naming.END + " DATETIME NULL, " +
-                Naming.DESCRIPTION + " VARCHAR(255) NULL, " +
-                Naming.REASON + " VARCHAR(255) NULL, " +
-                Naming.ATTACHMENT + " TEXT NULL, " +
+                Naming.START_TIME + " DATETIME NOT NULL, " +
+                Naming.END_TIME + " DATETIME NULL, " +
+                Naming.START_DESCRIPTION + " VARCHAR(255) NULL, " +
+                Naming.START_REASON + " VARCHAR(255) NULL, " +
+                Naming.START_ATTACHMENT + " VARCHAR(255) NULL, " +
+                Naming.END_DESCRIPTION + " VARCHAR(255) NULL, " +
+                Naming.END_REASON + " VARCHAR(255) NULL, " +
+                Naming.END_ATTACHMENT + " VARCHAR(255) NULL, " +
                 Naming.BY_UUID + " VARCHAR(255) NOT NULL, " +
                 Naming.APPROVED_BY_UUID + " VARCHAR(255) NULL, " +
                 Naming.APPROVED_TIME + " DATETIME NULL) ENGINE=INNODB";

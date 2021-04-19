@@ -1,5 +1,6 @@
 package com.laoapps.database.connector;
 
+import com.laoapps.database.entity.Attendance;
 import com.laoapps.database.entity.Department;
 import com.laoapps.database.entity.Profiles;
 import com.laoapps.database.entity.Users;
@@ -48,6 +49,7 @@ public class HibernateConnector {
         config.addAnnotatedClass(Users.class);
         config.addAnnotatedClass(Profiles.class);
         config.addAnnotatedClass(Department.class);
+        config.addAnnotatedClass(Attendance.class);
 
         return config;
     }

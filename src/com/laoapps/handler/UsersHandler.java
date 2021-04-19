@@ -10,7 +10,7 @@ import com.laoapps.database.entity.Users;
 import com.laoapps.utils.Naming;
 import com.laoapps.websocker.response.ResponseData;
 import com.laoapps.websocker.response.Response;
-import com.laoapps.websocker.response.UtilsResponse;
+import com.laoapps.websocker.response.ResponseBody;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import redis.clients.jedis.Jedis;
@@ -44,7 +44,7 @@ public class UsersHandler {
 
             Users getUser = (Users) session.createQuery("from Users where phoneNumber = '" + phoneNumber + "'").uniqueResult();
             if (getUser != null) {
-                Response response = new Response(new UtilsResponse(Naming.user, Naming.register, Naming.fail, "Phone number already exists", null));
+                Response response = new Response(new ResponseBody(Naming.user, Naming.register, Naming.fail, "Phone number already exists", null));
                 MyCommon.printMessage(response.toString());
 
                 return gson.toJson(response);
@@ -71,14 +71,14 @@ public class UsersHandler {
 
             session.getTransaction().commit();
 
-            Response response = new Response(new UtilsResponse(Naming.user, Naming.register, Naming.success, "Register successful", null));
+            Response response = new Response(new ResponseBody(Naming.user, Naming.register, Naming.success, "Register successful", null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);
 
         } catch (Exception e) {
 
-            Response response = new Response(new UtilsResponse(Naming.user, Naming.register, Naming.fail, e.getMessage(), null));
+            Response response = new Response(new ResponseBody(Naming.user, Naming.register, Naming.fail, e.getMessage(), null));
             MyCommon.printMessage(response.toString());
             e.printStackTrace();
 
@@ -100,7 +100,7 @@ public class UsersHandler {
                     "' and password = '" + hashedPassword + "'").uniqueResult();
 
             if (user == null) {
-                Response response = new Response(new UtilsResponse(Naming.user, Naming.login, Naming.fail, "Phone number or password incorrect", null));
+                Response response = new Response(new ResponseBody(Naming.user, Naming.login, Naming.fail, "Phone number or password incorrect", null));
                 MyCommon.printMessage(response.toString());
 
                 return gson.toJson(response);
@@ -122,14 +122,14 @@ public class UsersHandler {
             responseData.setJwt(jwt);
             responseData.setProfile(profile);
 
-            Response response = new Response(new UtilsResponse(Naming.user, Naming.login, Naming.success, "Login successful", responseData));
+            Response response = new Response(new ResponseBody(Naming.user, Naming.login, Naming.success, "Login successful", responseData));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Response response = new Response(new UtilsResponse(Naming.user, Naming.login, Naming.fail, e.getMessage(), null));
+            Response response = new Response(new ResponseBody(Naming.user, Naming.login, Naming.fail, e.getMessage(), null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);

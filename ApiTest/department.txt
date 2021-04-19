@@ -3,7 +3,7 @@
 "object": "department",
 "method": "create",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJjMzRmZmFiYS02MzkyLTQ4MTctYjczMi03MTQ0MzMwMmVmMmMiLCJpYXQiOjE2MTc5NDEwMTMsImV4cCI6MTYxNzk0MTMxMywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNzYxMTU3Y2MyIiwicGFyZW50IjoiYzc2MTE1N2NjMiJ9.5qcn_rIYLqR078E2rCpfy_soZoo3kdAfGEKgL-vbc0M",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
         "name": "Programmer",
         "parent": "0",
         "remark": "This is remark"
@@ -15,7 +15,7 @@
 "object": "department",
 "method": "get",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJjMzRmZmFiYS02MzkyLTQ4MTctYjczMi03MTQ0MzMwMmVmMmMiLCJpYXQiOjE2MTc5NDEwMTMsImV4cCI6MTYxNzk0MTMxMywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNzYxMTU3Y2MyIiwicGFyZW50IjoiYzc2MTE1N2NjMiJ9.5qcn_rIYLqR078E2rCpfy_soZoo3kdAfGEKgL-vbc0M",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
         "page": 1,
         "limit": 10,
         "keyword": "This is remark"
@@ -27,7 +27,7 @@
 "object": "department",
 "method": "update",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJjMzRmZmFiYS02MzkyLTQ4MTctYjczMi03MTQ0MzMwMmVmMmMiLCJpYXQiOjE2MTc5NDEwMTMsImV4cCI6MTYxNzk0MTMxMywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNzYxMTU3Y2MyIiwicGFyZW50IjoiYzc2MTE1N2NjMiJ9.5qcn_rIYLqR078E2rCpfy_soZoo3kdAfGEKgL-vbc0M",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
         "name": "Java",
         "parent": "Oracle",
         "remark": "This is updated department",
@@ -40,7 +40,7 @@
 "object": "department",
 "method": "delete",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJjMzRmZmFiYS02MzkyLTQ4MTctYjczMi03MTQ0MzMwMmVmMmMiLCJpYXQiOjE2MTc5NDEwMTMsImV4cCI6MTYxNzk0MTMxMywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNzYxMTU3Y2MyIiwicGFyZW50IjoiYzc2MTE1N2NjMiJ9.5qcn_rIYLqR078E2rCpfy_soZoo3kdAfGEKgL-vbc0M",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
         "uuid": "aebdb9b004"
     }
 }

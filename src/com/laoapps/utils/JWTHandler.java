@@ -87,7 +87,8 @@ public class JWTHandler {
             return new CheckJwt(true, jwt, uuid, parent);
 
         } catch (SignatureException | IncorrectClaimException | MalformedJwtException e) {
-            MyCommon.printMessage(e.getMessage());
+            e.printStackTrace();
+            MyCommon.printMessage("Test: " + e.getMessage());
             return new CheckJwt(false, jwt, uuid, parent);
 
         } catch (ExpiredJwtException e) {

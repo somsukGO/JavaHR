@@ -53,8 +53,6 @@ public class Naming {
     public static final String VALUE_PER_DAY = "value_per_day";
     //    Leaves
     public static final String LEAVES_TABLE_NAME = "leave";
-    public static final String START = "start";
-    public static final String END = "end";
     public static final String REASON = "reason";
     public static final String BY_UUID = "by_uuid";
     public static final String APPROVED_BY_UUID = "approved_by_uuid";
@@ -88,6 +86,14 @@ public class Naming {
     public static final String ADDRESS = "address";
     //    Attendance
     public static final String ATTENDANCE_TABLE_NAME = "attendance";
+    public static final String MINUTES = "minutes";
+    public static final String DATE = "date";
+    public static final String START_DESCRIPTION = "start_description";
+    public static final String START_REASON = "start_reason";
+    public static final String START_ATTACHMENT = "start_attachment";
+    public static final String END_DESCRIPTION = "end_description";
+    public static final String END_REASON = "end_reason";
+    public static final String END_ATTACHMENT = "end_attachment";
     //    Utils
     public static final String method = "method";
     public static final String data = "data";
@@ -109,4 +115,7 @@ public class Naming {
     public static final String update = "update";
     public static final String delete = "delete";
     public static final String employee = "employee";
+    public static final String attendance = "attendance";
+    public static final String startTime = "startTime";
+    public static final String endTime = "endTime";
 }
