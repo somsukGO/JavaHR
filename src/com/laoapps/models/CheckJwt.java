@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CheckJwt {
     private boolean isValid;
-    private String jwt, uuid, parent;
+    private String jwt, uuid, company;
 }

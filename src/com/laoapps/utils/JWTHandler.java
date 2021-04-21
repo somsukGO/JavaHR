@@ -19,9 +19,6 @@ public class JWTHandler {
     // encode algorithm
     SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
-    private final String SECRET_KEY = "mySecretKey";
-    byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
-
     private JWTHandler() {
     }
 
@@ -39,21 +36,24 @@ public class JWTHandler {
 
     private final Properties properties = UtilConfig.getProperties();
 
-    public String jwtEncode(String phoneNumber, String uuid, String parent) {
+    private final String SECRET_KEY = properties.getProperty(Naming.jwtSecretKey);
+    byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
+
+    public String jwtEncode(String phoneNumber, String uuid, String company) {
 
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setIssuer(properties.getProperty("jwt.issuer"))
                 .setId(UUID.randomUUID().toString())
                 .setIssuedAt(Date.from(Instant.now()))
-                .setExpiration(Date.from(Instant.now().plus(5, ChronoUnit.MINUTES)))
+                .setExpiration(Date.from(Instant.now().plus(6, ChronoUnit.HOURS)))
                 .setSubject(phoneNumber)
                 .signWith(signatureAlgorithm, apiKeySecretBytes)
 
                 // payload
                 .claim(Naming.phoneNumber, phoneNumber)
                 .claim(Naming.UUID, uuid)
-                .claim(Naming.PARENT, parent)
+                .claim(Naming.COMPANY, company)
 
                 .compact();
     }
@@ -69,38 +69,37 @@ public class JWTHandler {
 
         String phoneNumber = jsonObject.get(Naming.phoneNumber).getAsString();
         String uuid = jsonObject.get(Naming.UUID).getAsString();
-        String parent = jsonObject.get(Naming.PARENT).getAsString();
+        String company = jsonObject.get(Naming.COMPANY).getAsString();
 
         try (Jedis jedis = new Jedis(Naming.HOST_NAME)) {
 
-            if (!jedis.hexists(Naming.HR_JWT, phoneNumber)) {
-                String message = "Jwt not exists";
-                MyCommon.printMessage(message);
-                return new CheckJwt(false, jwt, uuid, parent);
-            }
+            if (!jwt.equals(jedis.hget(Naming.HR_JWT, phoneNumber))) return new CheckJwt(false, jwt, uuid, company);
 
             Jwts.parser()
                     .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
                     .requireIssuer(properties.getProperty("jwt.issuer"))
                     .parseClaimsJws(jwt);
 
-            return new CheckJwt(true, jwt, uuid, parent);
+            String newJwt = jwtEncode(phoneNumber, uuid, company);
+            jedis.hset(Naming.HR_JWT, phoneNumber, newJwt);
+
+            return new CheckJwt(true, jwt, uuid, company);
 
         } catch (SignatureException | IncorrectClaimException | MalformedJwtException e) {
             e.printStackTrace();
-            MyCommon.printMessage("Test: " + e.getMessage());
-            return new CheckJwt(false, jwt, uuid, parent);
+            MyCommon.printMessage(e.getMessage());
+            return new CheckJwt(false, jwt, uuid, company);
 
         } catch (ExpiredJwtException e) {
 
-            MyCommon.printMessage("Generate new Jwt");
+            MyCommon.printMessage("generate new Jwt");
 
-            String newJwt = jwtEncode(phoneNumber, uuid, parent);
+            String newJwt = jwtEncode(phoneNumber, uuid, company);
             try (Jedis jedis = new Jedis(Naming.HOST_NAME)) {
                 jedis.hset(Naming.HR_JWT, phoneNumber, newJwt);
             }
 
-            return new CheckJwt(true, newJwt, uuid, parent);
+            return new CheckJwt(true, newJwt, uuid, company);
 
         }
     }

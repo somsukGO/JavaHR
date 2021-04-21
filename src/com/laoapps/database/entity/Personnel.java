@@ -1,6 +1,5 @@
 package com.laoapps.database.entity;
 
-
 import com.laoapps.utils.Naming;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +13,8 @@ import java.time.Period;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = Naming.PROFILES_TABLE_NAME)
-public class Profiles {
+@Table(name = Naming.PERSONNEL_TABLE_NAME)
+public class Personnel {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = Naming.ID)
@@ -50,6 +49,18 @@ public class Profiles {
 
     @Column(name = Naming.UPDATED_AT)
     private String updatedAt;
+
+    @Column(name = Naming.POSITION)
+    private String position;
+
+    @Column(name = Naming.ROLE)
+    private String role;
+
+    @Column(name = Naming.DEPARTMENT_UUID)
+    private String departmentUuid;
+
+    @Column(name = Naming.SALARY)
+    private float salary;
 
     @Id
     @Column(name = Naming.UUID)

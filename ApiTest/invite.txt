@@ -1,0 +1,40 @@
+=> invite
+{
+"object": "invite",
+"method": "invite",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0ZjRjMjI1Ny1kZWYwLTRkZDMtOGE4Yy0xNjlmZjgzNTQ0NjAiLCJpYXQiOjE2MTg3OTk4MzksImV4cCI6MTYxODgwMDEzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZjMwYTA5MzUwIiwicGFyZW50IjoiMmYzMGEwOTM1MCJ9.TJlLfJ2sFRRi1m-WimiSNr48Axk80RQNGI2lrr6AUXU",
+        "position": "Programmer",
+        "description": "Python programmer",
+        "role": "employee",
+        "salary": "1000",
+        "toUuid": "uuid"
+    }
+}
+
+=> invite
+{
+"object": "invite",
+"method": "get",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI3YWFjZjM1Zi1kODRlLTRlOWYtYmI4OS1lOTJjNzVmOWQ3NzYiLCJpYXQiOjE2MTg5ODk5NzksImV4cCI6MTYxOTA3NjM3OSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIzMDg4Mzg5YmU0IiwicGxhdGZvcm0iOiJIUiIsInJvbGUiOiJhZG1pbiJ9.ZwuWK-6IQByC89UG__KQh9bTyGSmCnuSDSmhXAr1J9A"
+    }
+}
+
+=> invite
+{
+"object": "invite",
+"method": "update",
+"data": {
+
+    }
+}
+
+=> invite
+{
+"object": "invite",
+"method": "delete",
+"data": {
+
+    }
+}

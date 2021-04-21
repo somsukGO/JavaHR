@@ -1,11 +1,13 @@
-package com.laoapps.websocker.request.handler;
+package com.laoapps.socket.request.handler;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.laoapps.handler.UsersHandler;
 import com.laoapps.utils.Naming;
-import com.laoapps.websocker.response.Response;
-import com.laoapps.websocker.response.ResponseBody;
+import com.laoapps.socket.response.Response;
+import com.laoapps.socket.response.ResponseBody;
+
+import java.io.IOException;
 
 public class UsersRequestHandler {
 
@@ -22,21 +24,18 @@ public class UsersRequestHandler {
         return usersRequestHandler;
     }
 
-    private final Gson gson = new Gson();
-
-    public String response(JsonObject jsonObject) {
+    public String response(JsonObject jsonObject) throws IOException {
 
         UsersHandler usersHandler = UsersHandler.getInstance();
 
         String method = jsonObject.get(Naming.method).getAsString();
-        JsonObject data = gson.fromJson(jsonObject.get(Naming.data), JsonObject.class);
 
         switch (method) {
             case "register":
-                return usersHandler.register(data);
+                return usersHandler.register(jsonObject);
 
             case "login":
-                return usersHandler.login(data);
+                return usersHandler.login(jsonObject);
 
             default:
                 ResponseBody responseBody = new ResponseBody(Naming.user, Naming.unknown, 0, "method not exists", null);

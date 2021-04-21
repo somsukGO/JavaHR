@@ -1,10 +1,10 @@
 package com.laoapps;
 
-import com.laoapps.websocker.WSServer;
+import com.laoapps.socket.Websocket;
 
 public class Main {
 
     public static void main(String[] args) {
-        new WSServer(8899).start();
+        new Websocket(8898).start();
     }
 }

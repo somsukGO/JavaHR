@@ -20,15 +20,6 @@ public class Department {
     @Column(name = Naming.NAME)
     private String name;
 
-//    @Column(name = DepartmentNaming.MANAGER_UUID)
-//    private String managerUuid;
-
-//    @Column(name = DepartmentNaming.LAT)
-//    private float lat;
-//
-//    @Column(name = DepartmentNaming.LNG)
-//    private float lng;
-
     @Column(name = Naming.PARENT)
     private String parent;
 

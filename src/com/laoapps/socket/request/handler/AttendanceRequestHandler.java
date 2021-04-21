@@ -1,4 +1,4 @@
-package com.laoapps.websocker.request.handler;
+package com.laoapps.socket.request.handler;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -6,8 +6,8 @@ import com.laoapps.handler.AttendanceHandler;
 import com.laoapps.models.CheckJwtResult;
 import com.laoapps.utils.MyCommon;
 import com.laoapps.utils.Naming;
-import com.laoapps.websocker.response.Response;
-import com.laoapps.websocker.response.ResponseBody;
+import com.laoapps.socket.response.Response;
+import com.laoapps.socket.response.ResponseBody;
 
 public class AttendanceRequestHandler {
     private AttendanceRequestHandler() {

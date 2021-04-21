@@ -3,8 +3,8 @@ package com.laoapps.utils;
 import com.google.gson.JsonObject;
 import com.laoapps.models.CheckJwt;
 import com.laoapps.models.CheckJwtResult;
-import com.laoapps.websocker.response.Response;
-import com.laoapps.websocker.response.ResponseBody;
+import com.laoapps.socket.response.Response;
+import com.laoapps.socket.response.ResponseBody;
 
 import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
@@ -79,7 +79,7 @@ public class MyCommon {
         checkJwtResult.setPass(false);
 
         if (!data.has(Naming.jwt)) {
-            Response jwtFieldNotExistsResponse = new Response(new ResponseBody(object, method, Naming.fail, "Jwt field not exists", null));
+            Response jwtFieldNotExistsResponse = new Response(new ResponseBody(object, method, Naming.fail, "jwt field not exists", null));
             checkJwtResult.setResponse(jwtFieldNotExistsResponse);
             return checkJwtResult;
         }
@@ -87,7 +87,7 @@ public class MyCommon {
         CheckJwt checkJwt = jwtHandler.jwtValidation(data.get(Naming.jwt).getAsString());
 
         if (!checkJwt.isValid()) {
-            Response jwtNotValid = new Response(new ResponseBody(object, method, Naming.fail, "Authentication fail", null));
+            Response jwtNotValid = new Response(new ResponseBody(object, method, Naming.fail, "authentication fail", null));
             checkJwtResult.setResponse(jwtNotValid);
             return checkJwtResult;
         }

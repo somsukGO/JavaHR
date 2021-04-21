@@ -1,26 +1,24 @@
-package com.laoapps.websocker.request;
+package com.laoapps.socket.request;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.laoapps.socket.SocketClient;
+import com.laoapps.socket.request.handler.*;
 import com.laoapps.utils.MyCommon;
 import com.laoapps.utils.Naming;
-import com.laoapps.websocker.request.handler.AttendanceRequestHandler;
-import com.laoapps.websocker.request.handler.DepartmentRequestHandler;
-import com.laoapps.websocker.request.handler.EmployeeRequestHandler;
-import com.laoapps.websocker.request.handler.UsersRequestHandler;
-import com.laoapps.websocker.response.Response;
-import com.laoapps.websocker.response.ResponseBody;
+import com.laoapps.socket.response.Response;
+import com.laoapps.socket.response.ResponseBody;
 import org.java_websocket.WebSocket;
 
 import java.util.Map;
 
-public class WSRequestHandler implements Runnable {
+public class WsRequestHandler implements Runnable {
 
     private final Map<String, WebSocket> allOnlineUser;
     private final WebSocket webSocket;
     private final String message;
 
-    public WSRequestHandler(Map<String, WebSocket> allOnlineUser, WebSocket webSocket, String message) {
+    public WsRequestHandler(Map<String, WebSocket> allOnlineUser, WebSocket webSocket, String message) {
         this.allOnlineUser = allOnlineUser;
         this.webSocket = webSocket;
         this.message = message;
@@ -33,20 +31,32 @@ public class WSRequestHandler implements Runnable {
 
         Gson gson = new Gson();
 
-        UsersRequestHandler usersRequestHandler = UsersRequestHandler.getInstance();
+        InviteRequestHandler inviteRequestHandler = InviteRequestHandler.getInstance();
         DepartmentRequestHandler departmentRequestHandler = DepartmentRequestHandler.getInstance();
         EmployeeRequestHandler employeeRequestHandler = EmployeeRequestHandler.getInstance();
         AttendanceRequestHandler attendanceRequestHandler = AttendanceRequestHandler.getInstance();
+        CompanyRequestHandler companyRequestHandler = CompanyRequestHandler.getInstance();
+        ProfileHandlerRequest profileHandlerRequest = ProfileHandlerRequest.getInstance();
 
         try {
             JsonObject jsonObject = gson.fromJson(message, JsonObject.class);
+
+            if (!jsonObject.has(Naming.object)) throw new RuntimeException("object field not exists");
 
             String object = jsonObject.get(Naming.object).getAsString();
 
             switch (object) {
 
                 case "user":
-                    webSocket.send(usersRequestHandler.response(jsonObject));
+                    webSocket.send(new SocketClient().sendAndReceive(jsonObject));
+                    break;
+
+                case "profile":
+                    webSocket.send(profileHandlerRequest.response(jsonObject));
+                    break;
+
+                case "company":
+                    webSocket.send(companyRequestHandler.response(jsonObject));
                     break;
 
                 case "department":
@@ -59,6 +69,10 @@ public class WSRequestHandler implements Runnable {
 
                 case "attendance":
                     webSocket.send(attendanceRequestHandler.response(jsonObject));
+                    break;
+
+                case "invite":
+                    webSocket.send(inviteRequestHandler.response(jsonObject));
                     break;
 
                 default:

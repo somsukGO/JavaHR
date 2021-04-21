@@ -1,6 +1,6 @@
 package com.laoapps.models;
 
-import com.laoapps.websocker.response.Response;
+import com.laoapps.socket.response.Response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

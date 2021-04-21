@@ -1,0 +1,15 @@
+=> create
+{
+"object": "profile",
+"method": "create",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI3YWFjZjM1Zi1kODRlLTRlOWYtYmI4OS1lOTJjNzVmOWQ3NzYiLCJpYXQiOjE2MTg5ODk5NzksImV4cCI6MTYxOTA3NjM3OSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIzMDg4Mzg5YmU0IiwicGxhdGZvcm0iOiJIUiIsInJvbGUiOiJhZG1pbiJ9.ZwuWK-6IQByC89UG__KQh9bTyGSmCnuSDSmhXAr1J9A",
+       "firstName": "John",
+       "lastName": "Doe",
+       "email": "",
+       "address": "",
+       "birthDate": "",
+       "idCard": "",
+       "passport": ""
+    }
+}

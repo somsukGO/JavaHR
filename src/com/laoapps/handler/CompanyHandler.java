@@ -6,25 +6,24 @@ import com.laoapps.database.connector.HibernateConnector;
 import com.laoapps.models.CheckJwtResult;
 import org.hibernate.SessionFactory;
 
-public class EmployeeHandler {
-    private EmployeeHandler() {
-    }
+public class CompanyHandler {
+    private CompanyHandler() {}
 
-    private static EmployeeHandler employeeHandler = null;
+    private static CompanyHandler companyHandler = null;
 
-    public static EmployeeHandler getInstance() {
-        if (employeeHandler == null) {
-            employeeHandler = new EmployeeHandler();
+    public static CompanyHandler getInstance() {
+        if (companyHandler == null) {
+            companyHandler = new CompanyHandler();
         }
 
-        return employeeHandler;
+        return companyHandler;
     }
 
     private final SessionFactory factory = HibernateConnector.getInstance().getFactory();
     private final Gson gson = new Gson();
 
-    public String getById(JsonObject data, CheckJwtResult checkJwtResult) {
-        return "getById";
+    public String create(JsonObject data, CheckJwtResult checkJwtResult) {
+        return "create";
     }
 
     public String get(JsonObject data, CheckJwtResult checkJwtResult) {

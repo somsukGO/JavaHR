@@ -1,8 +1,8 @@
-package com.laoapps.websocker;
+package com.laoapps.socket;
 
 import com.laoapps.handler.TableHandler;
 import com.laoapps.handler.UsersHandler;
-import com.laoapps.websocker.request.WSRequestHandler;
+import com.laoapps.socket.request.WsRequestHandler;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -13,13 +13,13 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class WSServer extends WebSocketServer {
+public class Websocket extends WebSocketServer {
 
     private final int THREAD_POOL_SIZE = 500;
     private final ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
     public static final Map<String, WebSocket> allOnlineUser = new HashMap<>();
 
-    public WSServer(int port) {
+    public Websocket(int port) {
         super(new InetSocketAddress(port));
         TableHandler.getInstance().initTable();
         initHandler();
@@ -38,7 +38,7 @@ public class WSServer extends WebSocketServer {
 
     @Override
     public void onMessage(WebSocket webSocket, String message) {
-        threadPool.execute(new WSRequestHandler(allOnlineUser, webSocket, message));
+        threadPool.execute(new WsRequestHandler(allOnlineUser, webSocket, message));
     }
 
     @Override

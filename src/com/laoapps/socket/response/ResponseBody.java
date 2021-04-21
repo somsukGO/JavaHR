@@ -1,4 +1,4 @@
-package com.laoapps.websocker.response;
+package com.laoapps.socket.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

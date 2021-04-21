@@ -3,10 +3,20 @@
 "object": "department",
 "method": "create",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0ZjRjMjI1Ny1kZWYwLTRkZDMtOGE4Yy0xNjlmZjgzNTQ0NjAiLCJpYXQiOjE2MTg3OTk4MzksImV4cCI6MTYxODgwMDEzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZjMwYTA5MzUwIiwicGFyZW50IjoiMmYzMGEwOTM1MCJ9.TJlLfJ2sFRRi1m-WimiSNr48Axk80RQNGI2lrr6AUXU",
         "name": "Programmer",
-        "parent": "0",
+        "parent": "",
         "remark": "This is remark"
+    }
+}
+
+=> getById
+{
+"object": "department",
+"method": "getById",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0ZjRjMjI1Ny1kZWYwLTRkZDMtOGE4Yy0xNjlmZjgzNTQ0NjAiLCJpYXQiOjE2MTg3OTk4MzksImV4cCI6MTYxODgwMDEzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZjMwYTA5MzUwIiwicGFyZW50IjoiMmYzMGEwOTM1MCJ9.TJlLfJ2sFRRi1m-WimiSNr48Axk80RQNGI2lrr6AUXU",
+        "id": 54
     }
 }
 
@@ -15,7 +25,7 @@
 "object": "department",
 "method": "get",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0ZjRjMjI1Ny1kZWYwLTRkZDMtOGE4Yy0xNjlmZjgzNTQ0NjAiLCJpYXQiOjE2MTg3OTk4MzksImV4cCI6MTYxODgwMDEzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZjMwYTA5MzUwIiwicGFyZW50IjoiMmYzMGEwOTM1MCJ9.TJlLfJ2sFRRi1m-WimiSNr48Axk80RQNGI2lrr6AUXU",
         "page": 1,
         "limit": 10,
         "keyword": "This is remark"
@@ -27,7 +37,7 @@
 "object": "department",
 "method": "update",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0ZjRjMjI1Ny1kZWYwLTRkZDMtOGE4Yy0xNjlmZjgzNTQ0NjAiLCJpYXQiOjE2MTg3OTk4MzksImV4cCI6MTYxODgwMDEzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZjMwYTA5MzUwIiwicGFyZW50IjoiMmYzMGEwOTM1MCJ9.TJlLfJ2sFRRi1m-WimiSNr48Axk80RQNGI2lrr6AUXU",
         "name": "Java",
         "parent": "Oracle",
         "remark": "This is updated department",
@@ -40,7 +50,7 @@
 "object": "department",
 "method": "delete",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmMDBjNmI5Yi0yYTdhLTRmY2ItYjIyOS0zYmIwOWM5ZDcwNTkiLCJpYXQiOjE2MTgyMzU5NTgsImV4cCI6MTYxODIzNjI1OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0ZjMzMDU4NWQ0IiwicGFyZW50IjoiNGYzMzA1ODVkNCJ9.FnE81hmAevR8AcjQ31K77AI0nShlhPyyDhBUpT2x0qg",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0ZjRjMjI1Ny1kZWYwLTRkZDMtOGE4Yy0xNjlmZjgzNTQ0NjAiLCJpYXQiOjE2MTg3OTk4MzksImV4cCI6MTYxODgwMDEzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZjMwYTA5MzUwIiwicGFyZW50IjoiMmYzMGEwOTM1MCJ9.TJlLfJ2sFRRi1m-WimiSNr48Axk80RQNGI2lrr6AUXU",
         "uuid": "aebdb9b004"
     }
 }
