@@ -19,7 +19,7 @@ public class Naming {
     public static final String NAME = "name";
     public static final String REMARK = "remark";
     public static final String COMPANIES_TABLE_NAME = "companies";
-    public static final String COMPANY = "company";
+    public static final String company = "company";
     public static final String ADDRESS = "address";
     public static final String ATTENDANCE_TABLE_NAME = "attendance";
     public static final String MINUTES = "minutes";
@@ -79,4 +79,11 @@ public class Naming {
     public static final String PERSONNEL_TABLE_NAME = "personnel";
     public static final String DEPARTMENT_UUID = "department_uuid";
     public static final String profile = "profile";
+    public static final String checkJwt = "checkJwt";
+    public static final String body = "body";
+    public static final String status = "status";
+    public static final String firstName = "firstName";
+    public static final String lastName = "lastName";
+    public static final String birthDate = "birthDate";
+    public static final String idCard = "idCard";
 }

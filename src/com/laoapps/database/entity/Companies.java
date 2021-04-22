@@ -38,13 +38,13 @@ public class Companies {
     private String address;
 
     @Column(name = Naming.LAT)
-    private String lat;
+    private float lat;
 
     @Column(name = Naming.LNG)
-    private String lng;
+    private float lng;
 
     @Column(name = Naming.ALT)
-    private String alt;
+    private float alt;
 
     @Column(name = Naming.CREATED_AT)
     private String createdAt;

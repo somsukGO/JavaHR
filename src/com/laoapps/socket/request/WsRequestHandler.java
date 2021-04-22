@@ -48,7 +48,7 @@ public class WsRequestHandler implements Runnable {
             switch (object) {
 
                 case "user":
-                    webSocket.send(new SocketClient().sendAndReceive(jsonObject));
+                    webSocket.send(new SocketClient().sendAndReceive(gson.toJson(jsonObject)));
                     break;
 
                 case "profile":
@@ -83,6 +83,7 @@ public class WsRequestHandler implements Runnable {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             Response response = new Response(new ResponseBody(Naming.unknown, Naming.unknown, Naming.fail, e.getMessage(), null));
             MyCommon.printMessage(response.toString());
             webSocket.send(gson.toJson(response));

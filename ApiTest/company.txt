@@ -1,0 +1,17 @@
+=> create
+{
+"object": "company",
+"method": "create",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzZDlkYTcwNi1hYjg0LTQ1NDItOTA4Zi0wODg1MmU4ZmI2NTgiLCJpYXQiOjE2MTkwODIzNDcsImV4cCI6MTYxOTEwMzk0Nywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZmY5MjdkNTIyIiwic2lnbmF0dXJlIjoiOTNlNjdmNTU0MiIsInBsYXRmb3JtIjoiSFIifQ.JiLkwXAjan0cGQrWksMmkM1RCMgRQDZy1VS2U1H96W0",
+        "name": "my company",
+        "description": "this is description",
+        "phoneNumber": "112233",
+        "email": "john@mail.com"
+        "fax": "1010",
+        "address": "Lao",
+        "lat": 1111,
+        "lng": 2222,
+        "alt": 3333
+    }
+}

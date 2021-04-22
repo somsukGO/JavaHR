@@ -53,7 +53,7 @@ public class JWTHandler {
                 // payload
                 .claim(Naming.phoneNumber, phoneNumber)
                 .claim(Naming.UUID, uuid)
-                .claim(Naming.COMPANY, company)
+                .claim(Naming.company, company)
 
                 .compact();
     }
@@ -69,7 +69,7 @@ public class JWTHandler {
 
         String phoneNumber = jsonObject.get(Naming.phoneNumber).getAsString();
         String uuid = jsonObject.get(Naming.UUID).getAsString();
-        String company = jsonObject.get(Naming.COMPANY).getAsString();
+        String company = jsonObject.get(Naming.company).getAsString();
 
         try (Jedis jedis = new Jedis(Naming.HOST_NAME)) {
 

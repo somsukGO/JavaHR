@@ -1,8 +1,8 @@
 package com.laoapps.socket;
 
-import com.laoapps.handler.TableHandler;
-import com.laoapps.handler.UsersHandler;
+import com.laoapps.handler.*;
 import com.laoapps.socket.request.WsRequestHandler;
+import com.laoapps.socket.request.handler.*;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -59,6 +59,18 @@ public class Websocket extends WebSocketServer {
     }
 
     private void initHandler() {
-        UsersHandler.getInstance();
+        AttendanceRequestHandler.getInstance();
+        CompanyRequestHandler.getInstance();
+        DepartmentRequestHandler.getInstance();
+        EmployeeRequestHandler.getInstance();
+        InviteRequestHandler.getInstance();
+        ProfileHandlerRequest.getInstance();
+
+        AttendanceHandler.getInstance();
+        CompanyHandler.getInstance();
+        DepartmentHandler.getInstance();
+        EmployeeHandler.getInstance();
+        InviteHandler.getInstance();
+        ProfileHandler.getInstance();
     }
 }

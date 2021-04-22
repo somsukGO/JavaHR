@@ -53,9 +53,9 @@ public class TableHandler {
             Naming.FAX + " VARCHAR(255) NULL, " +
             Naming.OWNER_UUID + " VARCHAR(255) NOT NULL, " +
             Naming.ADDRESS + " VARCHAR(255) NULL, " +
-            Naming.LAT + " VARCHAR(255) NULL, " +
-            Naming.LNG + " VARCHAR(255) NULL, " +
-            Naming.ALT + " VARCHAR(255) NULL, " +
+            Naming.LAT + " FLOAT(15) NULL, " +
+            Naming.LNG + " FLOAT(15) NULL, " +
+            Naming.ALT + " FLOAT(15) NULL, " +
             Naming.CREATED_AT + " DATETIME NOT NULL, " +
             Naming.UPDATED_AT + " TIMESTAMP NULL, " +
             Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";

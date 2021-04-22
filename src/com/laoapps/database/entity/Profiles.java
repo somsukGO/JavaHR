@@ -37,7 +37,7 @@ public class Profiles {
     private String address;
 
     @Column(name = Naming.BIRTH_DATE)
-    private LocalDate birthDate;
+    private String birthDate;
 
     @Column(name = Naming.ID_CARD)
     private String idCard;
@@ -59,6 +59,6 @@ public class Profiles {
     private int age;
 
     public int getAge() {
-        return Period.between(birthDate, LocalDate.now()).getYears();
+        return Period.between(LocalDate.parse(birthDate), LocalDate.now()).getYears();
     }
 }

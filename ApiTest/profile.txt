@@ -3,13 +3,38 @@
 "object": "profile",
 "method": "create",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI3YWFjZjM1Zi1kODRlLTRlOWYtYmI4OS1lOTJjNzVmOWQ3NzYiLCJpYXQiOjE2MTg5ODk5NzksImV4cCI6MTYxOTA3NjM3OSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIzMDg4Mzg5YmU0IiwicGxhdGZvcm0iOiJIUiIsInJvbGUiOiJhZG1pbiJ9.ZwuWK-6IQByC89UG__KQh9bTyGSmCnuSDSmhXAr1J9A",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzZDlkYTcwNi1hYjg0LTQ1NDItOTA4Zi0wODg1MmU4ZmI2NTgiLCJpYXQiOjE2MTkwODIzNDcsImV4cCI6MTYxOTEwMzk0Nywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZmY5MjdkNTIyIiwic2lnbmF0dXJlIjoiOTNlNjdmNTU0MiIsInBsYXRmb3JtIjoiSFIifQ.JiLkwXAjan0cGQrWksMmkM1RCMgRQDZy1VS2U1H96W0",
        "firstName": "John",
        "lastName": "Doe",
-       "email": "",
-       "address": "",
-       "birthDate": "",
-       "idCard": "",
-       "passport": ""
+       "email": "john@mail.com",
+       "address": "Lao",
+       "birthDate": "1990-10-10",
+       "idCard": "12345",
+       "passport": "54321"
+    }
+}
+
+=> get
+{
+"object": "profile",
+"method": "get",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzZDlkYTcwNi1hYjg0LTQ1NDItOTA4Zi0wODg1MmU4ZmI2NTgiLCJpYXQiOjE2MTkwODIzNDcsImV4cCI6MTYxOTEwMzk0Nywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZmY5MjdkNTIyIiwic2lnbmF0dXJlIjoiOTNlNjdmNTU0MiIsInBsYXRmb3JtIjoiSFIifQ.JiLkwXAjan0cGQrWksMmkM1RCMgRQDZy1VS2U1H96W0"
+    }
+}
+
+=> update
+{
+"object": "profile",
+"method": "update",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzZDlkYTcwNi1hYjg0LTQ1NDItOTA4Zi0wODg1MmU4ZmI2NTgiLCJpYXQiOjE2MTkwODIzNDcsImV4cCI6MTYxOTEwMzk0Nywic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZmY5MjdkNTIyIiwic2lnbmF0dXJlIjoiOTNlNjdmNTU0MiIsInBsYXRmb3JtIjoiSFIifQ.JiLkwXAjan0cGQrWksMmkM1RCMgRQDZy1VS2U1H96W0",
+       "firstName": "John",
+       "lastName": "Doe",
+       "email": "john@mail.com",
+       "address": "Lao",
+       "birthDate": "1990-10-10",
+       "idCard": "22222",
+       "passport": "11111"
     }
 }

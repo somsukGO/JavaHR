@@ -32,21 +32,21 @@ public class InviteRequestHandler {
         String method = jsonObject.get(Naming.method).getAsString();
         JsonObject data = gson.fromJson(jsonObject.get(Naming.data), JsonObject.class);
 
-        CheckJwtResult checkJwtResult = MyCommon.checkJwtResult(data, Naming.INVITE, method);
-        if (!checkJwtResult.isPass()) return gson.toJson(checkJwtResult.getResponse());
+//        CheckJwtResult checkJwtResult = MyCommon.checkJwtResult(data, Naming.INVITE, method);
+//        if (!checkJwtResult.isPass()) return gson.toJson(checkJwtResult.getResponse());
 
         switch (method) {
             case "invite":
-                return inviteHandler.invite(data, checkJwtResult);
+                return inviteHandler.invite(data, null);
 
             case "get":
-                return inviteHandler.get(data, checkJwtResult);
+                return inviteHandler.get(data, null);
 
             case "update":
-                return inviteHandler.update(data, checkJwtResult);
+                return inviteHandler.update(data, null);
 
             case "delete":
-                return inviteHandler.delete(data, checkJwtResult);
+                return inviteHandler.delete(data, null);
 
             default:
                 ResponseBody responseBody = new ResponseBody(Naming.INVITE, method, 0, "method not exists", null);

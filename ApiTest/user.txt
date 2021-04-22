@@ -5,8 +5,7 @@
 "data": {
         "phoneNumber": "1",
         "password": "password",
-        "platform": "HR",
-        "role": "admin"
+        "platform": "hr",
     }
 }
 
