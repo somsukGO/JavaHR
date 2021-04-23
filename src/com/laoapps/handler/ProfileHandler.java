@@ -1,5 +1,6 @@
 package com.laoapps.handler;
 
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.laoapps.database.connector.HibernateConnector;
@@ -12,6 +13,10 @@ import com.laoapps.utils.MyCommon;
 import com.laoapps.utils.Naming;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProfileHandler {
     private ProfileHandler() {
@@ -40,7 +45,7 @@ public class ProfileHandler {
 
             Profiles profiles = new Profiles();
             profiles.setPhoneNumber(checkUserJwtResult.getPhoneNumber());
-            profiles.setUuid(checkUserJwtResult.getUuid());
+            profiles.setUserUuid(checkUserJwtResult.getUuid());
             setProfile(data, profiles);
 
             session.save(profiles);
@@ -65,15 +70,31 @@ public class ProfileHandler {
     }
 
     private void setProfile(JsonObject data, Profiles profiles) {
+        String email = null, idCard = null, passport = null;
+
+        if (data.has(Naming.EMAIL)) email = data.get(Naming.EMAIL).getAsString();
+        if (data.has(Naming.idCard)) idCard = data.get(Naming.idCard).getAsString();
+        if (data.has(Naming.PASSPORT)) passport = data.get(Naming.PASSPORT).getAsString();
+
+        if (!Strings.isNullOrEmpty(email)) {
+            String regex = "^(.+)@(.+)$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(email);
+            if (!matcher.matches()) throw new RuntimeException("email invalid");
+            profiles.setEmail(email);
+        }
+
+        String birthDate = data.get(Naming.birthDate).getAsString();
+        if (LocalDate.parse(birthDate).isAfter(LocalDate.now())) throw new RuntimeException("birth date invalid");
+
         profiles.setFirstName(data.get(Naming.firstName).getAsString());
         profiles.setLastName(data.get(Naming.lastName).getAsString());
-        profiles.setEmail(data.get(Naming.EMAIL).getAsString());
         profiles.setAddress(data.get(Naming.ADDRESS).getAsString());
         profiles.setBirthDate(data.get(Naming.birthDate).getAsString());
-        profiles.setIdCard(data.get(Naming.idCard).getAsString());
-        profiles.setPassport(data.get(Naming.PASSPORT).getAsString());
+        if (!Strings.isNullOrEmpty(idCard)) profiles.setIdCard(idCard);
+        if (!Strings.isNullOrEmpty(passport)) profiles.setPassport(passport);
         profiles.setCreatedAt(MyCommon.currentTime());
-        profiles.setAge(profiles.getAge());
+        profiles.calculateAge();
     }
 
     public String get(CheckUserJwtResult checkUserJwtResult) {
@@ -87,7 +108,7 @@ public class ProfileHandler {
 
             ResponseData responseData = new ResponseData();
             responseData.setJwt(checkUserJwtResult.getJwt());
-            if (profile != null) profile.setAge(profile.getAge());
+            if (profile != null) profile.calculateAge();
             responseData.setProfile(profile);
 
             Response response = new Response(new ResponseBody(Naming.profile, Naming.get, Naming.success, "successful", responseData));

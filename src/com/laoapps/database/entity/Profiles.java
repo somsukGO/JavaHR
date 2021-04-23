@@ -52,13 +52,13 @@ public class Profiles {
     private String updatedAt;
 
     @Id
-    @Column(name = Naming.UUID)
-    private String uuid;
+    @Column(name = Naming.USER_UUID)
+    private String userUuid;
 
     @Transient
     private int age;
 
-    public int getAge() {
-        return Period.between(LocalDate.parse(birthDate), LocalDate.now()).getYears();
+    public void calculateAge() {
+        age = Period.between(LocalDate.parse(birthDate), LocalDate.now()).getYears();
     }
 }

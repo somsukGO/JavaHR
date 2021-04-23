@@ -16,6 +16,7 @@ public class ResponseData {
     private ArrayList<Department> departments;
     private ArrayList<Attendance> attendances;
     private ArrayList<Invite> invites;
+    private ArrayList<Companies> companies;
     private Integer totalPage;
     private Integer totalElement;
     private Integer currentPage;

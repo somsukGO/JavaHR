@@ -86,4 +86,11 @@ public class Naming {
     public static final String lastName = "lastName";
     public static final String birthDate = "birthDate";
     public static final String idCard = "idCard";
+    public static final String STATUS = "status";
+    public static final String ACCEPTED_AT = "accepted_at";
+    public static final String CONTRACTS_TABLE_NAME = "contracts";
+    public static final String USER_UUID = "user_uuid";
+    public static final String INVITE_UUID = "invite_uuid";
+    public static final String getOwnedCompany = "getOwnedCompany";
+    public static final String getJoinedCompany = "getJoinedCompany";
 }

@@ -31,7 +31,7 @@ public class TableHandler {
             Naming.PASSPORT + " VARCHAR(255) NULL, " +
             Naming.CREATED_AT + " DATETIME NOT NULL, " +
             Naming.UPDATED_AT + " TIMESTAMP NULL, " +
-            Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";
+            Naming.USER_UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";
 
     String createInviteTable = "CREATE TABLE IF NOT EXISTS " + Naming.INVITE + "(" +
             Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
@@ -42,7 +42,18 @@ public class TableHandler {
             Naming.COMPANY_UUID + " VARCHAR(255) NOT NULL, " +
             Naming.TO_UUID + " VARCHAR(255) NOT NULL, " +
             Naming.CREATED_AT + " DATETIME NOT NULL, " +
-            Naming.UPDATED_AT + " TIMESTAMP NULL) ENGINE=INNODB;";
+            Naming.UPDATED_AT + " TIMESTAMP NULL, " +
+            Naming.ACCEPTED_AT + " DATETIME NULL, " +
+            Naming.STATUS + " VARCHAR(255) NOT NULL, " +
+            Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";
+
+    String createContractsTable = "CREATE TABLE IF NOT EXISTS " + Naming.CONTRACTS_TABLE_NAME + "(" +
+            Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
+            Naming.USER_UUID + " VARCHAR(255) NOT NULL, " +
+            Naming.COMPANY_UUID + " VARCHAR(255) NOT NULL, " +
+            Naming.INVITE_UUID + " VARCHAR(255) NOT NULL, " +
+            Naming.CREATED_AT + " VARCHAR(255) NOT NULL, " +
+            Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";
 
     String createCompaniesTable = "CREATE TABLE IF NOT EXISTS " + Naming.COMPANIES_TABLE_NAME + "(" +
             Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
@@ -113,6 +124,7 @@ public class TableHandler {
             session.createSQLQuery(createProfilesTable).executeUpdate();
             session.createSQLQuery(createCompaniesTable).executeUpdate();
             session.createSQLQuery(createInviteTable).executeUpdate();
+            session.createSQLQuery(createContractsTable).executeUpdate();
 
             session.getTransaction().commit();
 

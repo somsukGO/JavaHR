@@ -3,9 +3,9 @@
 "object": "user",
 "method": "register",
 "data": {
-        "phoneNumber": "1",
+        "phoneNumber": "2",
         "password": "password",
-        "platform": "hr",
+        "platform": "HR"
     }
 }
 
@@ -16,7 +16,7 @@
 "data": {
         "phoneNumber": "1",
         "password": "password",
-        "platform": "UPPERCASE_PLATFORM"
+        "platform": "HR"
     }
 }
 

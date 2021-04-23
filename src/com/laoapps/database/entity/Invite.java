@@ -41,4 +41,13 @@ public class Invite {
     @Column(name = Naming.UPDATED_AT)
     private String updatedAt;
 
+    @Column(name = Naming.ACCEPTED_AT)
+    private String acceptedAt;
+
+    @Column(name = Naming.STATUS)
+    private String status;
+
+    @Column(name = Naming.UUID)
+    private String uuid;
+
 }
