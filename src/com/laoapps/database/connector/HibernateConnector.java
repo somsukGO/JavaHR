@@ -37,7 +37,7 @@ public class HibernateConnector {
         config.setProperty(Environment.DRIVER, properties.getProperty("database.driver_class"));
         config.setProperty(Environment.URL, properties.getProperty("database.url"));
         config.setProperty(Environment.USER, properties.getProperty("database.username"));
-        config.setProperty(Environment.PASS, properties.getProperty("database.password"));
+//        config.setProperty(Environment.PASS, properties.getProperty("database.password"));
         config.setProperty(Environment.DIALECT, properties.getProperty("database.dialect"));
         config.setProperty(Environment.SHOW_SQL, properties.getProperty("database.show_sql"));
         config.setProperty(Environment.CURRENT_SESSION_CONTEXT_CLASS, properties.getProperty("database.context_class"));
