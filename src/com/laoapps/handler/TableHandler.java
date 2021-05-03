@@ -39,6 +39,7 @@ public class TableHandler {
             Naming.DESCRIPTION + " VARCHAR(255) NULL, " +
             Naming.ROLE + " VARCHAR(255) NULL, " +
             Naming.SALARY + " VARCHAR(255) NULL, " +
+            Naming.DEPARTMENT_UUID + " VARCHAR(255) NOT NULL, " +
             Naming.COMPANY_UUID + " VARCHAR(255) NOT NULL, " +
             Naming.TO_UUID + " VARCHAR(255) NOT NULL, " +
             Naming.CREATED_AT + " DATETIME NOT NULL, " +
@@ -71,7 +72,7 @@ public class TableHandler {
             Naming.UPDATED_AT + " TIMESTAMP NULL, " +
             Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";
 
-    private String queryCreateDepartmentTable(String uuid) {
+    public String createDepartmentTable(String uuid) {
         return "CREATE TABLE IF NOT EXISTS " + Naming.DEPARTMENTS_TABLE_NAME + "_" + uuid + "(" +
                 Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
                 Naming.NAME + " VARCHAR(255) NOT NULL, " +
@@ -82,7 +83,7 @@ public class TableHandler {
                 Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB";
     }
 
-    private String queryCreateAttendanceTable(String uuid) {
+    public String createAttendanceTable(String uuid) {
         return "CREATE TABLE IF NOT EXISTS " + Naming.ATTENDANCE_TABLE_NAME + "_" + uuid + "(" +
                 Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
                 Naming.DATE + " DATE NOT NULL, " +
@@ -99,22 +100,27 @@ public class TableHandler {
                 Naming.APPROVED_TIME + " DATETIME NULL) ENGINE=INNODB";
     }
 
-    String createPersonnelTable = "CREATE TABLE IF NOT EXISTS " + Naming.PERSONNEL_TABLE_NAME + "(" +
-            Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
-            Naming.FIRST_NAME + " VARCHAR(255) NOT NULL, " +
-            Naming.LAST_NAME + " VARCHAR(255) NOT NULL, " +
-            Naming.PHONE_NUMBER + " VARCHAR(255) NULL, " +
-            Naming.EMAIL + " VARCHAR(255) NULL, " +
-            Naming.ADDRESS + " VARCHAR(255) NULL, " +
-            Naming.BIRTH_DATE + " DATE NULL, " +
-            Naming.ID_CARD + " VARCHAR(255) NULL, " +
-            Naming.PASSPORT + " VARCHAR(255) NULL, " +
-            Naming.CREATED_AT + " DATETIME NOT NULL, " +
-            Naming.UPDATED_AT + " TIMESTAMP NULL, " +
-            Naming.POSITION + " VARCHAR(255) NOT NULL, " +
-            Naming.ROLE + " VARCHAR(255) NOT NULL, " +
-            Naming.DEPARTMENT_UUID + " VARCHAR(255) NOT NULL, " +
-            Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";
+    public String createPersonnelTable(String uuid) {
+
+        return "CREATE TABLE IF NOT EXISTS " + Naming.PERSONNEL_TABLE_NAME + "_" + uuid + "(" +
+                Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
+                Naming.FIRST_NAME + " VARCHAR(255) NOT NULL, " +
+                Naming.LAST_NAME + " VARCHAR(255) NOT NULL, " +
+                Naming.PHONE_NUMBER + " VARCHAR(255) NULL, " +
+                Naming.EMAIL + " VARCHAR(255) NULL, " +
+                Naming.ADDRESS + " VARCHAR(255) NULL, " +
+                Naming.BIRTH_DATE + " DATE NULL, " +
+                Naming.ID_CARD + " VARCHAR(255) NULL, " +
+                Naming.PASSPORT + " VARCHAR(255) NULL, " +
+                Naming.CREATED_AT + " DATETIME NOT NULL, " +
+                Naming.UPDATED_AT + " TIMESTAMP NULL, " +
+                Naming.POSITION + " VARCHAR(255) NOT NULL, " +
+                Naming.ROLE + " VARCHAR(255) NOT NULL, " +
+                Naming.DEPARTMENT_UUID + " VARCHAR(255) NOT NULL, " +
+                Naming.SALARY + " VARCHAR(255) NOT NULL, " +
+                Naming.USER_UUID + " VARCHAR(255) NOT NULL, " +
+                Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";
+    }
 
     public void initTable() {
         try (Session session = HibernateConnector.getInstance().getFactory().openSession()) {
@@ -134,4 +140,5 @@ public class TableHandler {
             e.printStackTrace();
         }
     }
+
 }

@@ -21,7 +21,7 @@ public class Websocket extends WebSocketServer {
 
     public Websocket(int port) {
         super(new InetSocketAddress(port));
-        TableHandler.getInstance().initTable();
+//        TableHandler.getInstance().initTable();
         initHandler();
     }
 

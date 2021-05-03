@@ -2,19 +2,23 @@ package com.laoapps.handler;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.laoapps.database.connector.CustomInterceptor;
 import com.laoapps.database.connector.HibernateConnector;
 import com.laoapps.database.entity.Companies;
-import com.laoapps.database.entity.Department;
+import com.laoapps.database.entity.Personnel;
+import com.laoapps.database.entity.Profiles;
 import com.laoapps.models.CheckUserJwt;
 import com.laoapps.models.CheckUserJwtResult;
 import com.laoapps.socket.SocketClient;
 import com.laoapps.socket.response.Response;
 import com.laoapps.socket.response.ResponseBody;
 import com.laoapps.socket.response.ResponseData;
+import com.laoapps.utils.JWTHandler;
 import com.laoapps.utils.MyCommon;
 import com.laoapps.utils.Naming;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,14 +39,22 @@ public class CompanyHandler {
 
     private final SessionFactory factory = HibernateConnector.getInstance().getFactory();
     private final Gson gson = new Gson();
+    private final JWTHandler jwtHandler = JWTHandler.getInstance();
 
     public String create(JsonObject data) {
+
+        Response response;
+        String uuid = MyCommon.generateUuid();
+        CheckUserJwtResult checkUserJwtResult;
 
         try (Session session = factory.openSession()) {
 
             CheckUserJwt checkUserJwt = new CheckUserJwt(Naming.user, Naming.checkJwt, data.get(Naming.jwt).getAsString());
-            JsonObject getResponse = gson.fromJson(new SocketClient().sendAndReceive(gson.toJson(checkUserJwt)), JsonObject.class);
-            CheckUserJwtResult checkUserJwtResult = new CheckUserJwtResult(getResponse);
+            JsonObject getResponse = gson.fromJson(new SocketClient().sendAndReceive(gson.toJson(checkUserJwt)),
+                    JsonObject.class);
+            checkUserJwtResult = new CheckUserJwtResult(getResponse);
+
+            if (!checkUserJwtResult.isPass()) return gson.toJson(getResponse);
 
             session.beginTransaction();
 
@@ -51,9 +63,14 @@ public class CompanyHandler {
             setCompany(company, data);
             company.setOwnerUuid(checkUserJwtResult.getUuid());
             company.setCreatedAt(MyCommon.currentTime());
-            company.setUuid(MyCommon.generateUuid());
+            company.setUuid(uuid);
 
             session.save(company);
+
+            TableHandler tableHandler = TableHandler.getInstance();
+            session.createSQLQuery(tableHandler.createPersonnelTable(uuid)).executeUpdate();
+            session.createSQLQuery(tableHandler.createDepartmentTable(uuid)).executeUpdate();
+            session.createSQLQuery(tableHandler.createAttendanceTable(uuid)).executeUpdate();
 
             session.getTransaction().commit();
 
@@ -61,17 +78,57 @@ public class CompanyHandler {
             responseData.setJwt(checkUserJwtResult.getJwt());
             responseData.setCompany(company);
 
-            Response response = new Response(new ResponseBody(Naming.company, Naming.create, Naming.success, "successful", responseData));
+            response = new Response(new ResponseBody(Naming.company, Naming.create, Naming.success, "successful",
+                    responseData));
             MyCommon.printMessage(response.toString());
-            return gson.toJson(response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Response response = new Response(new ResponseBody(Naming.company, Naming.create, Naming.fail, e.getMessage(), null));
+            response = new Response(new ResponseBody(Naming.company, Naming.create, Naming.fail, e.getMessage(),
+                    null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);
         }
+
+        // init personnel
+        try (Session session = factory.withOptions().interceptor(new CustomInterceptor(uuid)).openSession()) {
+
+            session.beginTransaction();
+
+            Profiles profile = session.get(Profiles.class, checkUserJwtResult.getUuid());
+            Personnel personnel = new Personnel();
+            personnel.setFirstName(profile.getFirstName());
+            personnel.setLastName(profile.getLastName());
+            personnel.setPhoneNumber(profile.getPhoneNumber());
+            personnel.setEmail(profile.getEmail());
+            personnel.setAddress(profile.getAddress());
+            personnel.setBirthDate(profile.getBirthDate());
+            personnel.setIdCard(profile.getIdCard());
+            personnel.setPassport(profile.getPassport());
+            personnel.setCreatedAt(MyCommon.currentTime());
+            personnel.setPosition(Naming.admin);
+            personnel.setRole(Naming.admin);
+            personnel.setDepartmentUuid(Naming.admin);
+            personnel.setSalary(Naming.admin);
+            personnel.setUserUuid(checkUserJwtResult.getUuid());
+            personnel.setUuid(MyCommon.generateUuid());
+
+            session.save(personnel);
+
+            session.getTransaction().commit();
+
+            return gson.toJson(response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response = new Response(new ResponseBody(Naming.company, Naming.create, Naming.fail, e.getMessage(),
+                    null));
+            MyCommon.printMessage(response.toString());
+
+            return gson.toJson(response);
+        }
+
     }
 
     private void setCompany(Companies company, JsonObject data) {
@@ -91,8 +148,11 @@ public class CompanyHandler {
         try (Session session = factory.openSession()) {
 
             CheckUserJwt checkUserJwt = new CheckUserJwt(Naming.user, Naming.checkJwt, data.get(Naming.jwt).getAsString());
-            JsonObject getResponse = gson.fromJson(new SocketClient().sendAndReceive(gson.toJson(checkUserJwt)), JsonObject.class);
+            JsonObject getResponse = gson.fromJson(new SocketClient().sendAndReceive(gson.toJson(checkUserJwt)),
+                    JsonObject.class);
             CheckUserJwtResult checkUserJwtResult = new CheckUserJwtResult(getResponse);
+
+            if (!checkUserJwtResult.isPass()) return gson.toJson(getResponse);
 
             int page = data.get(Naming.page).getAsInt();
             int limit = data.get(Naming.limit).getAsInt();
@@ -127,13 +187,59 @@ public class CompanyHandler {
             responseData.setCurrentPage(page);
             responseData.setLimit(limit);
 
-            Response response = new Response(new ResponseBody(Naming.company, Naming.getOwnedCompany, Naming.success, "successful", responseData));
+            Response response = new Response(new ResponseBody(Naming.company, Naming.getOwnedCompany, Naming.success,
+                    "successful", responseData));
             MyCommon.printMessage(response.toString());
             return gson.toJson(response);
 
         } catch (Exception e) {
             e.printStackTrace();
             Response response = new Response(new ResponseBody(Naming.company, Naming.getOwnedCompany, Naming.fail, e.getMessage(), null));
+            MyCommon.printMessage(response.toString());
+
+            return gson.toJson(response);
+        }
+    }
+
+    public String select(JsonObject data) throws IOException {
+
+        try (Session session = factory.openSession()) {
+
+            CheckUserJwt checkUserJwt = new CheckUserJwt(Naming.user, Naming.checkJwt, data.get(Naming.jwt).getAsString());
+            JsonObject getResponse = gson.fromJson(new SocketClient().sendAndReceive(gson.toJson(checkUserJwt)),
+                    JsonObject.class);
+            CheckUserJwtResult checkUserJwtResult = new CheckUserJwtResult(getResponse);
+
+            if (!checkUserJwtResult.isPass()) return gson.toJson(getResponse);
+
+            String companyUuid = data.get(Naming.companyUuid).getAsString();
+
+            session.beginTransaction();
+
+            Companies company = session.get(Companies.class, companyUuid);
+            if (company == null) throw new RuntimeException("company uuid not exists");
+
+            session.getTransaction().commit();
+
+            String companyJwt = jwtHandler.jwtEncode(checkUserJwtResult.getPhoneNumber(), checkUserJwtResult.getUuid(), companyUuid);
+
+            try (Jedis jedis = new Jedis(Naming.HOST_NAME)) {
+                jedis.hset(Naming.HR_JWT, checkUserJwtResult.getPhoneNumber(), companyJwt);
+            }
+
+            ResponseData responseData = new ResponseData();
+            responseData.setCompany(company);
+            responseData.setCompanyJwt(companyJwt);
+
+            Response response = new Response(new ResponseBody(Naming.company, Naming.select, Naming.success,
+                    "successful", responseData));
+            MyCommon.printMessage(response.toString());
+            return gson.toJson(response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Response response = new Response(new ResponseBody(Naming.company, Naming.select,
+                    Naming.fail, e.getMessage(), null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);
@@ -152,4 +258,5 @@ public class CompanyHandler {
     public String delete(JsonObject data) {
         return "delete";
     }
+
 }

@@ -36,7 +36,7 @@ public class Personnel {
     private String address;
 
     @Column(name = Naming.BIRTH_DATE)
-    private LocalDate birthDate;
+    private String birthDate;
 
     @Column(name = Naming.ID_CARD)
     private String idCard;
@@ -60,7 +60,10 @@ public class Personnel {
     private String departmentUuid;
 
     @Column(name = Naming.SALARY)
-    private float salary;
+    private String salary;
+
+    @Column(name = Naming.USER_UUID)
+    private String userUuid;
 
     @Id
     @Column(name = Naming.UUID)
@@ -69,7 +72,7 @@ public class Personnel {
     @Transient
     private int age;
 
-    public int getAge() {
-        return Period.between(birthDate, LocalDate.now()).getYears();
+    public void calculateAge() {
+        age = Period.between(LocalDate.parse(birthDate), LocalDate.now()).getYears();
     }
 }

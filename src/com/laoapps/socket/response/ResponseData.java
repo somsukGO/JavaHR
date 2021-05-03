@@ -21,4 +21,6 @@ public class ResponseData {
     private Integer totalElement;
     private Integer currentPage;
     private Integer limit;
+    private String companyJwt;
+    private Invite invite;
 }

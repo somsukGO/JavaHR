@@ -33,6 +33,9 @@ public class CompanyRequestHandler {
             case "create":
                 return companyHandler.create(data);
 
+            case "select":
+                return companyHandler.select(data);
+
             case "getOwnedCompany":
                 return companyHandler.getOwnedCompany(data);
 

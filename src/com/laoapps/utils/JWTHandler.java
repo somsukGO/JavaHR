@@ -73,7 +73,8 @@ public class JWTHandler {
 
         try (Jedis jedis = new Jedis(Naming.HOST_NAME)) {
 
-            if (!jwt.equals(jedis.hget(Naming.HR_JWT, phoneNumber))) return new CheckJwt(false, jwt, uuid, company);
+            // TODO: disable jwt check
+//            if (!jwt.equals(jedis.hget(Naming.HR_JWT, phoneNumber))) return new CheckJwt(false, jwt, uuid, company);
 
             Jwts.parser()
                     .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))

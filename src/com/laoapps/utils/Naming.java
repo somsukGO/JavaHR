@@ -93,4 +93,14 @@ public class Naming {
     public static final String INVITE_UUID = "invite_uuid";
     public static final String getOwnedCompany = "getOwnedCompany";
     public static final String getJoinedCompany = "getJoinedCompany";
+    public static final String select = "select";
+    public static final String companyUuid = "companyUuid";
+    public static final String companyJwt = "companyJwt";
+    public static final String departmentUuid = "departmentUuid";
+    public static final String toUuid = "toUuid";
+    public static final String pending = "pending";
+    public static final String inviteUuid = "inviteUuid";
+    public static final String accepted = "accepted";
+    public static final String reject = "reject";
+    public static final String rejected = "rejected";
 }

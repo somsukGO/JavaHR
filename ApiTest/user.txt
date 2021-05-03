@@ -3,7 +3,7 @@
 "object": "user",
 "method": "register",
 "data": {
-        "phoneNumber": "2",
+        "phoneNumber": "1",
         "password": "password",
         "platform": "HR"
     }
@@ -25,6 +25,6 @@
 "object": "user",
 "method": "checkJwt",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJkNGY3MGY1MC02ZGUyLTRjYzYtODJjZS04ZDg3NDYxMzAwN2MiLCJpYXQiOjE2MTg5OTU1MjgsImV4cCI6MTYxOTAxNzEyOCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZmVhNzM5ZjA5IiwicGxhdGZvcm0iOiJVUFBFUkNBU0VfUExBVEZPUk0iLCJyb2xlIjoiYWRtaW4ifQ.vVy6K_1JGKVbTFEjj17gdPTmoOQ-1STb5fC2KpWmpr4"
+        "jwt": ""
     }
 }

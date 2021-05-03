@@ -78,13 +78,14 @@ public class MyCommon {
         CheckJwtResult checkJwtResult = new CheckJwtResult();
         checkJwtResult.setPass(false);
 
-        if (!data.has(Naming.jwt)) {
-            Response jwtFieldNotExistsResponse = new Response(new ResponseBody(object, method, Naming.fail, "jwt field not exists", null));
+        if (!data.has(Naming.companyJwt)) {
+            Response jwtFieldNotExistsResponse = new Response(new ResponseBody(object, method, Naming.fail,
+                    "companyJwt field not exists", null));
             checkJwtResult.setResponse(jwtFieldNotExistsResponse);
             return checkJwtResult;
         }
 
-        CheckJwt checkJwt = jwtHandler.jwtValidation(data.get(Naming.jwt).getAsString());
+        CheckJwt checkJwt = jwtHandler.jwtValidation(data.get(Naming.companyJwt).getAsString());
 
         if (!checkJwt.isValid()) {
             Response jwtNotValid = new Response(new ResponseBody(object, method, Naming.fail, "authentication fail", null));

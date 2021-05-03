@@ -3,28 +3,30 @@
 "object": "invite",
 "method": "invite",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0ZjRjMjI1Ny1kZWYwLTRkZDMtOGE4Yy0xNjlmZjgzNTQ0NjAiLCJpYXQiOjE2MTg3OTk4MzksImV4cCI6MTYxODgwMDEzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIyZjMwYTA5MzUwIiwicGFyZW50IjoiMmYzMGEwOTM1MCJ9.TJlLfJ2sFRRi1m-WimiSNr48Axk80RQNGI2lrr6AUXU",
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        .eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIyZDhjNTQxNi0zY2YyLTQyMDQtODYxMC04ZGQ1Y2JiYWMxMjciLCJpYXQiOjE2MjAwNDg3NTIsImV4cCI6MTYyMDA3MDM1Miwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0MTQ1MDJlNzQyIiwiY29tcGFueSI6IjNjNTczN2Q5YWQifQ.PecjeDsnhDb8kAdpLnVl98TpZFccHa3ozoiQ3ZOXBHc",
         "position": "Programmer",
         "description": "Python programmer",
         "role": "employee",
         "salary": "1000",
-        "toUuid": "uuid"
+        "departmentUuid": "77cd56c9a4",
+        "toUuid": "8ca7de3e6b"
     }
 }
 
-=> invite
+=> get
 {
 "object": "invite",
 "method": "get",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI3YWFjZjM1Zi1kODRlLTRlOWYtYmI4OS1lOTJjNzVmOWQ3NzYiLCJpYXQiOjE2MTg5ODk5NzksImV4cCI6MTYxOTA3NjM3OSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiIzMDg4Mzg5YmU0IiwicGxhdGZvcm0iOiJIUiIsInJvbGUiOiJhZG1pbiJ9.ZwuWK-6IQByC89UG__KQh9bTyGSmCnuSDSmhXAr1J9A",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI4NzM5NDYwYi05ZWRlLTQ1MmYtOGI3Mi0xMTg0YTA1NTdiMDAiLCJpYXQiOjE2MjAwNTE1ODIsImV4cCI6MTYyMDA3MzE4Miwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiI4Y2E3ZGUzZTZiIiwic2lnbmF0dXJlIjoiOWU2NGIxYmI4NiIsInBsYXRmb3JtIjoiSFIifQ.GFdsv6DGfWEZsnc1IO8MrIwvRiZqQ_CVt2FfqcDC5O0",
         "page": 1,
         "limit": 10,
         "keyword": "Programmer"
     }
 }
 
-=> invite
+=> update
 {
 "object": "invite",
 "method": "update",
@@ -33,11 +35,32 @@
     }
 }
 
-=> invite
+=> delete
 {
 "object": "invite",
 "method": "delete",
 "data": {
 
+    }
+}
+
+=> accept
+{
+"object": "invite",
+"method": "accept",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI4NzM5NDYwYi05ZWRlLTQ1MmYtOGI3Mi0xMTg0YTA1NTdiMDAiLCJpYXQiOjE2MjAwNTE1ODIsImV4cCI6MTYyMDA3MzE4Miwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiI4Y2E3ZGUzZTZiIiwic2lnbmF0dXJlIjoiOWU2NGIxYmI4NiIsInBsYXRmb3JtIjoiSFIifQ.GFdsv6DGfWEZsnc1IO8MrIwvRiZqQ_CVt2FfqcDC5O0",
+                "inviteUuid": "",
+                "companyUuid": "3c5737d9ad"
+    }
+}
+
+=> reject
+{
+"object": "invite",
+"method": "reject",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI4NzM5NDYwYi05ZWRlLTQ1MmYtOGI3Mi0xMTg0YTA1NTdiMDAiLCJpYXQiOjE2MjAwNTE1ODIsImV4cCI6MTYyMDA3MzE4Miwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiI4Y2E3ZGUzZTZiIiwic2lnbmF0dXJlIjoiOWU2NGIxYmI4NiIsInBsYXRmb3JtIjoiSFIifQ.GFdsv6DGfWEZsnc1IO8MrIwvRiZqQ_CVt2FfqcDC5O0",
+                "inviteUuid": ""
     }
 }

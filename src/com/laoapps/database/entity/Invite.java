@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Table(name = Naming.INVITE)
 public class Invite {
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = Naming.ID)
     private int id;
@@ -28,6 +27,9 @@ public class Invite {
 
     @Column(name = Naming.SALARY)
     private String salary;
+
+    @Column(name = Naming.DEPARTMENT_UUID)
+    private String departmentUuid;
 
     @Column(name = Naming.COMPANY_UUID)
     private String companyUuid;
@@ -47,6 +49,7 @@ public class Invite {
     @Column(name = Naming.STATUS)
     private String status;
 
+    @Id
     @Column(name = Naming.UUID)
     private String uuid;
 

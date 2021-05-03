@@ -9,6 +9,8 @@ import com.laoapps.socket.response.ResponseBody;
 import com.laoapps.utils.MyCommon;
 import com.laoapps.utils.Naming;
 
+import java.io.IOException;
+
 public class InviteRequestHandler {
     private InviteRequestHandler() {
     }
@@ -25,22 +27,25 @@ public class InviteRequestHandler {
 
     private final Gson gson = new Gson();
 
-    public String response(JsonObject jsonObject) {
+    public String response(JsonObject jsonObject) throws IOException {
 
         InviteHandler inviteHandler = InviteHandler.getInstance();
 
         String method = jsonObject.get(Naming.method).getAsString();
         JsonObject data = gson.fromJson(jsonObject.get(Naming.data), JsonObject.class);
 
-//        CheckJwtResult checkJwtResult = MyCommon.checkJwtResult(data, Naming.INVITE, method);
-//        if (!checkJwtResult.isPass()) return gson.toJson(checkJwtResult.getResponse());
-
         switch (method) {
             case "invite":
-                return inviteHandler.invite(data, null);
+                return inviteHandler.invite(data);
 
             case "get":
-                return inviteHandler.get(data, null);
+                return inviteHandler.get(data);
+
+            case "accept":
+                return inviteHandler.accept(data);
+
+            case "reject":
+                return inviteHandler.reject(data);
 
             case "update":
                 return inviteHandler.update(data, null);

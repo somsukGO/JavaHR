@@ -76,7 +76,8 @@ public class WsRequestHandler implements Runnable {
                     break;
 
                 default:
-                    Response response = new Response(new ResponseBody(Naming.unknown, Naming.unknown, Naming.fail, "object not exists", null));
+                    Response response = new Response(new ResponseBody(Naming.unknown, Naming.unknown, Naming.fail,
+                            "object not exists", null));
                     MyCommon.printMessage(response.toString());
                     webSocket.send(gson.toJson(response));
                     break;
@@ -84,7 +85,8 @@ public class WsRequestHandler implements Runnable {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Response response = new Response(new ResponseBody(Naming.unknown, Naming.unknown, Naming.fail, e.getMessage(), null));
+            Response response = new Response(new ResponseBody(Naming.unknown, Naming.unknown, Naming.fail,
+                    e.getMessage(), null));
             MyCommon.printMessage(response.toString());
             webSocket.send(gson.toJson(response));
         }
