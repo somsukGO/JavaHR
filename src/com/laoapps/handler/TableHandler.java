@@ -37,7 +37,7 @@ public class TableHandler {
             Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
             Naming.POSITION + " VARCHAR(255) NOT NULL, " +
             Naming.DESCRIPTION + " VARCHAR(255) NULL, " +
-            Naming.ROLE + " VARCHAR(255) NULL, " +
+            Naming.ROLE + " VARCHAR(255) NOT NULL, " +
             Naming.SALARY + " VARCHAR(255) NULL, " +
             Naming.DEPARTMENT_UUID + " VARCHAR(255) NOT NULL, " +
             Naming.COMPANY_UUID + " VARCHAR(255) NOT NULL, " +
@@ -85,10 +85,11 @@ public class TableHandler {
 
     public String createAttendanceTable(String uuid) {
         return "CREATE TABLE IF NOT EXISTS " + Naming.ATTENDANCE_TABLE_NAME + "_" + uuid + "(" +
-                Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
+                Naming.ID + " INT(11) AUTO_INCREMENT PRIMARY KEY, " +
                 Naming.DATE + " DATE NOT NULL, " +
                 Naming.START_TIME + " TIME NOT NULL, " +
                 Naming.END_TIME + " TIME NULL, " +
+                Naming.MINUTES + " INT(11) NULL, " +
                 Naming.START_DESCRIPTION + " VARCHAR(255) NULL, " +
                 Naming.START_REASON + " VARCHAR(255) NULL, " +
                 Naming.START_ATTACHMENT + " VARCHAR(255) NULL, " +
@@ -100,9 +101,9 @@ public class TableHandler {
                 Naming.APPROVED_TIME + " DATETIME NULL) ENGINE=INNODB";
     }
 
-    public String createPersonnelTable(String uuid) {
+    public String createEmployeeHandler(String uuid) {
 
-        return "CREATE TABLE IF NOT EXISTS " + Naming.PERSONNEL_TABLE_NAME + "_" + uuid + "(" +
+        return "CREATE TABLE IF NOT EXISTS " + Naming.EMPLOYEES_TABLE_NAME + "_" + uuid + "(" +
                 Naming.ID + " INT AUTO_INCREMENT PRIMARY KEY, " +
                 Naming.FIRST_NAME + " VARCHAR(255) NOT NULL, " +
                 Naming.LAST_NAME + " VARCHAR(255) NOT NULL, " +
@@ -117,8 +118,9 @@ public class TableHandler {
                 Naming.POSITION + " VARCHAR(255) NOT NULL, " +
                 Naming.ROLE + " VARCHAR(255) NOT NULL, " +
                 Naming.DEPARTMENT_UUID + " VARCHAR(255) NOT NULL, " +
-                Naming.SALARY + " VARCHAR(255) NOT NULL, " +
+                Naming.SALARY + " VARCHAR(255) NULL, " +
                 Naming.USER_UUID + " VARCHAR(255) NOT NULL, " +
+                Naming.status + " VARCHAR(255) NOT NULL, " +
                 Naming.UUID + " VARCHAR(255) NOT NULL) ENGINE=INNODB;";
     }
 

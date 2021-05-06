@@ -3,14 +3,13 @@
 "object": "invite",
 "method": "invite",
 "data": {
-        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
-        .eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIyZDhjNTQxNi0zY2YyLTQyMDQtODYxMC04ZGQ1Y2JiYWMxMjciLCJpYXQiOjE2MjAwNDg3NTIsImV4cCI6MTYyMDA3MDM1Miwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0MTQ1MDJlNzQyIiwiY29tcGFueSI6IjNjNTczN2Q5YWQifQ.PecjeDsnhDb8kAdpLnVl98TpZFccHa3ozoiQ3ZOXBHc",
-        "position": "Programmer",
-        "description": "Python programmer",
-        "role": "employee",
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmNTQ4NDg4My1kZWM3LTQ4N2ItYjg0ZC0wYWY2MTdlN2ZhODEiLCJpYXQiOjE2MjAxMTgzMzksImV4cCI6MTYyMDEzOTkzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ZChx2UpexK-_nlL0semY6bPNLYDZiaxdkAfx0zFdKqw",
+        "position": "Designer",
+        "description": "Designer",
+        "role": "HR",
         "salary": "1000",
-        "departmentUuid": "77cd56c9a4",
-        "toUuid": "8ca7de3e6b"
+        "departmentUuid": "96ae975490",
+        "toUuid": "e166bf868d"
     }
 }
 
@@ -19,10 +18,10 @@
 "object": "invite",
 "method": "get",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI4NzM5NDYwYi05ZWRlLTQ1MmYtOGI3Mi0xMTg0YTA1NTdiMDAiLCJpYXQiOjE2MjAwNTE1ODIsImV4cCI6MTYyMDA3MzE4Miwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiI4Y2E3ZGUzZTZiIiwic2lnbmF0dXJlIjoiOWU2NGIxYmI4NiIsInBsYXRmb3JtIjoiSFIifQ.GFdsv6DGfWEZsnc1IO8MrIwvRiZqQ_CVt2FfqcDC5O0",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI5OTY3ZDBkNy0wN2I1LTQ2ZjQtYWU0NS00YzIxNTU5OTE0NjciLCJpYXQiOjE2MjAxMTgzODUsImV4cCI6MTYyMDEzOTk4NSwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiJlMTY2YmY4NjhkIiwic2lnbmF0dXJlIjoiNDAwMjAwNjFjNSIsInBsYXRmb3JtIjoiSFIifQ.FABVx1Xjsj0cfV5l8wpKsnzm-GbqJSqqjF8p9gAVCXo",
         "page": 1,
         "limit": 10,
-        "keyword": "Programmer"
+        "keyword": ""
     }
 }
 
@@ -49,9 +48,9 @@
 "object": "invite",
 "method": "accept",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI4NzM5NDYwYi05ZWRlLTQ1MmYtOGI3Mi0xMTg0YTA1NTdiMDAiLCJpYXQiOjE2MjAwNTE1ODIsImV4cCI6MTYyMDA3MzE4Miwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiI4Y2E3ZGUzZTZiIiwic2lnbmF0dXJlIjoiOWU2NGIxYmI4NiIsInBsYXRmb3JtIjoiSFIifQ.GFdsv6DGfWEZsnc1IO8MrIwvRiZqQ_CVt2FfqcDC5O0",
-                "inviteUuid": "",
-                "companyUuid": "3c5737d9ad"
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI5OTY3ZDBkNy0wN2I1LTQ2ZjQtYWU0NS00YzIxNTU5OTE0NjciLCJpYXQiOjE2MjAxMTgzODUsImV4cCI6MTYyMDEzOTk4NSwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiJlMTY2YmY4NjhkIiwic2lnbmF0dXJlIjoiNDAwMjAwNjFjNSIsInBsYXRmb3JtIjoiSFIifQ.FABVx1Xjsj0cfV5l8wpKsnzm-GbqJSqqjF8p9gAVCXo",
+        "inviteUuid": "566d861b97",
+        "companyUuid": "5a94773226"
     }
 }
 
@@ -60,7 +59,18 @@
 "object": "invite",
 "method": "reject",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI4NzM5NDYwYi05ZWRlLTQ1MmYtOGI3Mi0xMTg0YTA1NTdiMDAiLCJpYXQiOjE2MjAwNTE1ODIsImV4cCI6MTYyMDA3MzE4Miwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiI4Y2E3ZGUzZTZiIiwic2lnbmF0dXJlIjoiOWU2NGIxYmI4NiIsInBsYXRmb3JtIjoiSFIifQ.GFdsv6DGfWEZsnc1IO8MrIwvRiZqQ_CVt2FfqcDC5O0",
-                "inviteUuid": ""
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJkMTk3YjUxNS0yYTJmLTQ0ZmMtYmIxYS01MzY2Y2JhODBmMTAiLCJpYXQiOjE2MjAwNjEwMjksImV4cCI6MTYyMDA4MjYyOSwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiJlZjM1NDllZjRhIiwic2lnbmF0dXJlIjoiZWMwNDNiZjYzOCIsInBsYXRmb3JtIjoiSFIifQ.SqMNzGqur-YVJKfHmnTkX68B4sp5KFXtXnPylgP-G40",
+        "inviteUuid": ""
+    }
+}
+
+=> delete
+{
+"object": "invite",
+"method": "delete",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI5ZGQzNTVlZC1iZTE1LTRhZGMtYjc4Zi05MzJmMzA3MzE4NmQiLCJpYXQiOjE2MjAxMDg3MDQsImV4cCI6MTYyMDEzMDMwNCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0MTQ1MDJlNzQyIiwic2lnbmF0dXJlIjoiZjBhZDY4NjQxMSIsInBsYXRmb3JtIjoiSFIifQ.r77EDLOk1k7hVv9UNGYkOwupWeLCO8xE1OQztoIY_4M",
+        "inviteUuid": "7645114be2",
+        "companyUuid": "3c5737d9ad"
     }
 }

@@ -75,6 +75,16 @@ public class WsRequestHandler implements Runnable {
                     webSocket.send(inviteRequestHandler.response(jsonObject));
                     break;
 
+                // TODO:
+                case "job":
+                    break;
+
+                case "dailyJob":
+                    break;
+
+                case "trace":
+                    break;
+
                 default:
                     Response response = new Response(new ResponseBody(Naming.unknown, Naming.unknown, Naming.fail,
                             "object not exists", null));

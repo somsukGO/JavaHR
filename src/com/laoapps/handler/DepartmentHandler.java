@@ -46,7 +46,7 @@ public class DepartmentHandler {
 
             session.beginTransaction();
 
-            String role = (String) session.createQuery("select role from Personnel where userUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
+            String role = (String) session.createQuery("select role from Employees where userUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
 
             if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) {
                 Response response = new Response(new ResponseBody(Naming.department, Naming.create, Naming.fail, "access denied", null));
@@ -180,7 +180,7 @@ public class DepartmentHandler {
 
             session.beginTransaction();
 
-            String role = (String) session.createQuery("select role from Personnel where userUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
+            String role = (String) session.createQuery("select role from Employees where userUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
 
             if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) {
                 Response response = new Response(new ResponseBody(Naming.department, Naming.update, Naming.fail, "access denied", null));
@@ -227,7 +227,7 @@ public class DepartmentHandler {
             String uuid = data.get(Naming.UUID).getAsString();
             session.beginTransaction();
 
-            String role = (String) session.createQuery("select role from Personnel where userUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
+            String role = (String) session.createQuery("select role from Employees where userUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
 
             if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) {
                 Response response = new Response(new ResponseBody(Naming.department, Naming.delete, Naming.fail, "Access denied", null));

@@ -37,9 +37,6 @@ public class EmployeeRequestHandler {
 
         switch (method) {
 
-            case "getById":
-                return employeeHandler.getById(data, checkJwtResult);
-
             case "get":
                 return employeeHandler.get(data, checkJwtResult);
 

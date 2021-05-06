@@ -3,9 +3,8 @@
 "object": "department",
 "method": "create",
 "data": {
-       "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
-.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIyZDhjNTQxNi0zY2YyLTQyMDQtODYxMC04ZGQ1Y2JiYWMxMjciLCJpYXQiOjE2MjAwNDg3NTIsImV4cCI6MTYyMDA3MDM1Miwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0MTQ1MDJlNzQyIiwiY29tcGFueSI6IjNjNTczN2Q5YWQifQ.PecjeDsnhDb8kAdpLnVl98TpZFccHa3ozoiQ3ZOXBHc",
-        "name": "Programmer",
+       "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiJmNTQ4NDg4My1kZWM3LTQ4N2ItYjg0ZC0wYWY2MTdlN2ZhODEiLCJpYXQiOjE2MjAxMTgzMzksImV4cCI6MTYyMDEzOTkzOSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ZChx2UpexK-_nlL0semY6bPNLYDZiaxdkAfx0zFdKqw",
+        "name": "Designer",
         "parent": "",
         "remark": "This is remark"
     }
@@ -16,7 +15,7 @@
 "object": "department",
 "method": "getById",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI2YmUzOWVhMC1hYTRhLTQ2MjMtODg2YS1kZTE3MTJiYTM3NzUiLCJpYXQiOjE2MjAwNjAzMzQsImV4cCI6MTYyMDA4MTkzNCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI2Njk4YzI5ODk0IiwiY29tcGFueSI6IjVmMTUxNzM4YTUifQ.XJSx4PDjRSLZUrEeZ2P2kcCO3PgQOvHSF74K8DZSlSU",
         "id": 54
     }
 }
@@ -26,7 +25,8 @@
 "object": "department",
 "method": "get",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        .eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI2YmUzOWVhMC1hYTRhLTQ2MjMtODg2YS1kZTE3MTJiYTM3NzUiLCJpYXQiOjE2MjAwNjAzMzQsImV4cCI6MTYyMDA4MTkzNCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI2Njk4YzI5ODk0IiwiY29tcGFueSI6IjVmMTUxNzM4YTUifQ.XJSx4PDjRSLZUrEeZ2P2kcCO3PgQOvHSF74K8DZSlSU",
         "page": 1,
         "limit": 10,
         "keyword": "This is remark"
@@ -38,7 +38,7 @@
 "object": "department",
 "method": "update",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI2YmUzOWVhMC1hYTRhLTQ2MjMtODg2YS1kZTE3MTJiYTM3NzUiLCJpYXQiOjE2MjAwNjAzMzQsImV4cCI6MTYyMDA4MTkzNCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI2Njk4YzI5ODk0IiwiY29tcGFueSI6IjVmMTUxNzM4YTUifQ.XJSx4PDjRSLZUrEeZ2P2kcCO3PgQOvHSF74K8DZSlSU",
         "name": "Java",
         "parent": "Oracle",
         "remark": "This is updated department",
@@ -51,7 +51,7 @@
 "object": "department",
 "method": "delete",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI2YmUzOWVhMC1hYTRhLTQ2MjMtODg2YS1kZTE3MTJiYTM3NzUiLCJpYXQiOjE2MjAwNjAzMzQsImV4cCI6MTYyMDA4MTkzNCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI2Njk4YzI5ODk0IiwiY29tcGFueSI6IjVmMTUxNzM4YTUifQ.XJSx4PDjRSLZUrEeZ2P2kcCO3PgQOvHSF74K8DZSlSU",
         "uuid": "aebdb9b004"
     }
 }

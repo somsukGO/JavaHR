@@ -3,15 +3,15 @@
 "object": "company",
 "method": "create",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIwODQ3ZjBjYy0yZmYzLTRjZWMtOGUwYi1jNDRkM2U1MmIwODciLCJpYXQiOjE2MjAwMzUzMDYsImV4cCI6MTYyMDA1NjkwNiwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0MTQ1MDJlNzQyIiwic2lnbmF0dXJlIjoiZjBhZDY4NjQxMSIsInBsYXRmb3JtIjoiSFIifQ.-gETl6urRAwnHVlcgB6B6CTG0lQX4tmY3mV093lE-R4",
-        "name": "my company",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzMDI0M2QyMC1jYzNmLTRkNzEtOTcxNi00OWM4MGU1OWFjNzQiLCJpYXQiOjE2MjAxMTgyMDEsImV4cCI6MTYyMDEzOTgwMSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwic2lnbmF0dXJlIjoiOGE1MTA4ZDZmMSIsInBsYXRmb3JtIjoiSFIifQ.LjFbH0qBR4EL0NFME4NeqXrQx8QWo2NB1_W03VB2GHA",
+        "name": "company and tech",
         "description": "this is description",
-        "phoneNumber": "112233",
-        "email": "john@mail.com",
+        "phoneNumber": "223344",
+        "email": "jane@mail.com",
         "fax": "1010",
-        "address": "Lao",
+        "address": "Thailand",
         "lat": 1111,
-        "lng": 2222,
+        "lng": 2323,
         "alt": 3333
     }
 }
@@ -21,7 +21,7 @@
 "object": "company",
 "method": "getOwnedCompany",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIwODQ3ZjBjYy0yZmYzLTRjZWMtOGUwYi1jNDRkM2U1MmIwODciLCJpYXQiOjE2MjAwMzUzMDYsImV4cCI6MTYyMDA1NjkwNiwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0MTQ1MDJlNzQyIiwic2lnbmF0dXJlIjoiZjBhZDY4NjQxMSIsInBsYXRmb3JtIjoiSFIifQ.-gETl6urRAwnHVlcgB6B6CTG0lQX4tmY3mV093lE-R4",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI5ZGQzNTVlZC1iZTE1LTRhZGMtYjc4Zi05MzJmMzA3MzE4NmQiLCJpYXQiOjE2MjAxMDg3MDQsImV4cCI6MTYyMDEzMDMwNCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0MTQ1MDJlNzQyIiwic2lnbmF0dXJlIjoiZjBhZDY4NjQxMSIsInBsYXRmb3JtIjoiSFIifQ.r77EDLOk1k7hVv9UNGYkOwupWeLCO8xE1OQztoIY_4M",
                 "page": 1,
                 "limit": 10,
                 "keyword": "my company"
@@ -33,7 +33,16 @@
 "object": "company",
 "method": "select",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIwODQ3ZjBjYy0yZmYzLTRjZWMtOGUwYi1jNDRkM2U1MmIwODciLCJpYXQiOjE2MjAwMzUzMDYsImV4cCI6MTYyMDA1NjkwNiwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0MTQ1MDJlNzQyIiwic2lnbmF0dXJlIjoiZjBhZDY4NjQxMSIsInBsYXRmb3JtIjoiSFIifQ.-gETl6urRAwnHVlcgB6B6CTG0lQX4tmY3mV093lE-R4",
-        "companyUuid": "3c5737d9ad"
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzMDI0M2QyMC1jYzNmLTRkNzEtOTcxNi00OWM4MGU1OWFjNzQiLCJpYXQiOjE2MjAxMTgyMDEsImV4cCI6MTYyMDEzOTgwMSwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwic2lnbmF0dXJlIjoiOGE1MTA4ZDZmMSIsInBsYXRmb3JtIjoiSFIifQ.LjFbH0qBR4EL0NFME4NeqXrQx8QWo2NB1_W03VB2GHA",
+        "companyUuid": "5a94773226"
+    }
+}
+
+=> getJoinedCompany
+{
+"object": "company",
+"method": "getJoinedCompany",
+"data": {
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIyOTliNTMzZS05ZWQ4LTRkMWUtYWZjNC1hODY0YzgxZGEwZTYiLCJpYXQiOjE2MjAxMTI1MDYsImV4cCI6MTYyMDEzNDEwNiwic3ViIjoiMiIsInBob25lTnVtYmVyIjoiMiIsInV1aWQiOiI4Y2E3ZGUzZTZiIiwic2lnbmF0dXJlIjoiOWU2NGIxYmI4NiIsInBsYXRmb3JtIjoiSFIifQ.-wx-zZvUcEB1PcFir_GFFTkUO6RV6Fz_-UOmTqDFy0Y"
     }
 }

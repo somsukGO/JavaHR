@@ -76,7 +76,7 @@ public class Naming {
     public static final String LNG = "lng";
     public static final String REASON = "reason";
     public static final String ATTACHMENT = "attachment";
-    public static final String PERSONNEL_TABLE_NAME = "personnel";
+    public static final String EMPLOYEES_TABLE_NAME = "employees";
     public static final String DEPARTMENT_UUID = "department_uuid";
     public static final String profile = "profile";
     public static final String checkJwt = "checkJwt";
@@ -103,4 +103,7 @@ public class Naming {
     public static final String accepted = "accepted";
     public static final String reject = "reject";
     public static final String rejected = "rejected";
+    public static final String accept = "accept";
+    public static final String employeeUuid = "employeeUuid";
+    public static final String deleted = "deleted";
 }

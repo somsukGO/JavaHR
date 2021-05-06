@@ -47,7 +47,7 @@ public class HibernateConnector {
         config.addAnnotatedClass(Department.class);
         config.addAnnotatedClass(Attendance.class);
         config.addAnnotatedClass(Companies.class);
-        config.addAnnotatedClass(Personnel.class);
+        config.addAnnotatedClass(Employees.class);
         config.addAnnotatedClass(Invite.class);
 
         return config;

@@ -1,12 +1,12 @@
 package com.laoapps.handler;
 
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.laoapps.database.connector.CustomInterceptor;
 import com.laoapps.database.connector.HibernateConnector;
-import com.laoapps.database.entity.Department;
+import com.laoapps.database.entity.Employees;
 import com.laoapps.database.entity.Invite;
-import com.laoapps.database.entity.Personnel;
 import com.laoapps.database.entity.Profiles;
 import com.laoapps.models.CheckJwtResult;
 import com.laoapps.models.CheckUserJwt;
@@ -48,10 +48,11 @@ public class InviteHandler {
         try (Session session = factory.withOptions().interceptor(new CustomInterceptor(checkJwtResult.getCheckJwt().getCompany()))
                 .openSession()) {
 
+            String description = null, salary = null;
             String position = data.get(Naming.POSITION).getAsString();
-            String description = data.get(Naming.ROLE).getAsString();
+            if (data.has(Naming.DESCRIPTION)) description = data.get(Naming.DESCRIPTION).getAsString();
+            if (data.has(Naming.SALARY)) salary = data.get(Naming.SALARY).getAsString();
             String inviteRole = data.get(Naming.ROLE).getAsString();
-            String salary = data.get(Naming.SALARY).getAsString();
             String departmentUuid = data.get(Naming.departmentUuid).getAsString();
             String toUuid = data.get(Naming.toUuid).getAsString();
 
@@ -60,7 +61,7 @@ public class InviteHandler {
             session.beginTransaction();
 
             // check role
-            String role = (String) session.createQuery("select role from Personnel where userUuid = '" +
+            String role = (String) session.createQuery("select role from Employees where userUuid = '" +
                     checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
             if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) throw new RuntimeException("access deny");
 
@@ -75,17 +76,17 @@ public class InviteHandler {
             if (checkToUuid == null) throw new RuntimeException("to uuid not exists");
 
             // check invite exists or not
-            String checkInvite = (String) session.createQuery("select toUuid from Invite where toUuid = '" + toUuid + "' and status = '" + Naming.pending + "' or " +
-                    "status = '" + Naming.accepted + "'")
+            String checkInvite = (String) session.createQuery("select toUuid from Invite where toUuid = '" + toUuid + "' and (status = '" + Naming.pending + "' or " +
+                    "status = '" + Naming.accepted + "') and companyUuid = '" + checkJwtResult.getCheckJwt().getCompany() + "'")
                     .uniqueResult();
 
             if (checkInvite != null) throw new RuntimeException("invite already exists");
 
             Invite invite = new Invite();
             invite.setPosition(position);
-            invite.setDescription(description);
+            if (!Strings.isNullOrEmpty(description)) invite.setDescription(description);
             invite.setRole(inviteRole);
-            invite.setSalary(salary);
+            if (!Strings.isNullOrEmpty(salary)) invite.setSalary(salary);
             invite.setDepartmentUuid(departmentUuid);
             invite.setCompanyUuid(checkJwtResult.getCheckJwt().getCompany());
             invite.setToUuid(toUuid);
@@ -174,13 +175,6 @@ public class InviteHandler {
         }
     }
 
-    public String update(JsonObject data, CheckJwtResult checkJwtResult) {
-        return "update";
-    }
-
-    public String delete(JsonObject data, CheckJwtResult checkJwtResult) {
-        return "delete";
-    }
 
     public String accept(JsonObject data) throws IOException {
 
@@ -208,37 +202,80 @@ public class InviteHandler {
             session.update(invite);
 
             Profiles profile = session.get(Profiles.class, checkUserJwtResult.getUuid());
-            Personnel personnel = new Personnel();
-            personnel.setFirstName(profile.getFirstName());
-            personnel.setLastName(profile.getLastName());
-            personnel.setPhoneNumber(profile.getPhoneNumber());
-            personnel.setEmail(profile.getEmail());
-            personnel.setAddress(profile.getAddress());
-            personnel.setBirthDate(profile.getBirthDate());
-            personnel.setIdCard(profile.getIdCard());
-            personnel.setPassport(profile.getPassport());
-            personnel.setCreatedAt(MyCommon.currentTime());
-            personnel.setPosition(invite.getPosition());
-            personnel.setRole(invite.getRole());
-            personnel.setDepartmentUuid(invite.getDepartmentUuid());
-            personnel.setSalary(invite.getSalary());
-            personnel.setUserUuid(checkUserJwtResult.getUuid());
-            personnel.setUuid(MyCommon.generateUuid());
+            Employees employees = new Employees();
+            employees.setFirstName(profile.getFirstName());
+            employees.setLastName(profile.getLastName());
+            if (!Strings.isNullOrEmpty(profile.getPhoneNumber())) employees.setPhoneNumber(profile.getPhoneNumber());
+            if (!Strings.isNullOrEmpty(profile.getEmail())) employees.setEmail(profile.getEmail());
+            if (!Strings.isNullOrEmpty(profile.getAddress())) employees.setAddress(profile.getAddress());
+            if (!Strings.isNullOrEmpty(profile.getBirthDate())) employees.setBirthDate(profile.getBirthDate());
+            if (!Strings.isNullOrEmpty(profile.getIdCard())) employees.setIdCard(profile.getIdCard());
+            if (!Strings.isNullOrEmpty(profile.getPassport())) employees.setPassport(profile.getPassport());
+            employees.setCreatedAt(MyCommon.currentTime());
+            employees.setPosition(invite.getPosition());
+            employees.setRole(invite.getRole());
+            employees.setDepartmentUuid(invite.getDepartmentUuid());
+            if (!Strings.isNullOrEmpty(invite.getSalary())) employees.setSalary(invite.getSalary());
+            employees.setUserUuid(checkUserJwtResult.getUuid());
+            employees.setUuid(MyCommon.generateUuid());
+            employees.setStatus(Naming.deleted);
 
-            session.save(personnel);
+            session.save(employees);
 
             session.getTransaction().commit();
 
             ResponseData responseData = new ResponseData();
             responseData.setJwt(checkUserJwtResult.getJwt());
 
-            Response response = new Response(new ResponseBody(Naming.INVITE, Naming.INVITE, Naming.success, "successful", responseData));
+            Response response = new Response(new ResponseBody(Naming.INVITE, Naming.accept, Naming.success, "successful", responseData));
             MyCommon.printMessage(response.toString());
             return gson.toJson(response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Response response = new Response(new ResponseBody(Naming.INVITE, Naming.INVITE, Naming.fail, e.getMessage(), null));
+            Response response = new Response(new ResponseBody(Naming.INVITE, Naming.accept, Naming.fail, e.getMessage(), null));
+            MyCommon.printMessage(response.toString());
+
+            return gson.toJson(response);
+        }
+    }
+
+    public String delete(JsonObject data) throws IOException {
+
+        CheckUserJwt checkUserJwt = new CheckUserJwt(Naming.user, Naming.checkJwt, data.get(Naming.jwt).getAsString());
+        JsonObject getResponse = gson.fromJson(new SocketClient().sendAndReceive(gson.toJson(checkUserJwt)),
+                JsonObject.class);
+        CheckUserJwtResult checkUserJwtResult = new CheckUserJwtResult(getResponse);
+
+        if (!checkUserJwtResult.isPass()) return gson.toJson(getResponse);
+
+        String companyUuid = data.get(Naming.companyUuid).getAsString();
+        String inviteUuid = data.get(Naming.inviteUuid).getAsString();
+
+        try (Session session = factory.withOptions().interceptor(new CustomInterceptor(companyUuid)).openSession()) {
+
+            session.beginTransaction();
+
+            Invite invite = (Invite) session.createQuery("from Invite where uuid = '" + inviteUuid + "' and companyUuid = '" + companyUuid + "'").uniqueResult();
+            if (invite == null) throw new RuntimeException("invite not exists");
+
+            String role = (String) session.createQuery("select role from Employees where userUuid = '" + checkUserJwtResult.getUuid() + "'").uniqueResult();
+            if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) throw new RuntimeException("access deny");
+
+            session.delete(invite);
+
+            session.getTransaction().commit();
+
+            ResponseData responseData = new ResponseData();
+            responseData.setJwt(checkUserJwtResult.getJwt());
+
+            Response response = new Response(new ResponseBody(Naming.INVITE, Naming.delete, Naming.success, "successful", responseData));
+            MyCommon.printMessage(response.toString());
+            return gson.toJson(response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Response response = new Response(new ResponseBody(Naming.INVITE, Naming.delete, Naming.fail, e.getMessage(), null));
             MyCommon.printMessage(response.toString());
 
             return gson.toJson(response);
@@ -284,5 +321,9 @@ public class InviteHandler {
 
             return gson.toJson(response);
         }
+    }
+
+    public String update(JsonObject data, CheckJwtResult checkJwtResult) {
+        return "update";
     }
 }

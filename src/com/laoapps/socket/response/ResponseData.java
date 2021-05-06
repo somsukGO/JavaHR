@@ -13,10 +13,12 @@ public class ResponseData {
     private Department department;
     private Attendance attendance;
     private Companies company;
+    private Employees employee;
     private ArrayList<Department> departments;
     private ArrayList<Attendance> attendances;
     private ArrayList<Invite> invites;
     private ArrayList<Companies> companies;
+    private ArrayList<Employees> employees;
     private Integer totalPage;
     private Integer totalElement;
     private Integer currentPage;

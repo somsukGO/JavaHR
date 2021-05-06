@@ -64,6 +64,7 @@ public class AttendanceHandler {
 
             ResponseData responseData = new ResponseData();
             responseData.setJwt(checkJwtResult.getCheckJwt().getJwt());
+            responseData.setAttendance(attendance);
 
             Response response = new Response(new ResponseBody(Naming.attendance, Naming.startTime, Naming.success, "successful", responseData));
             MyCommon.printMessage(response.toString());
@@ -106,6 +107,7 @@ public class AttendanceHandler {
 
             ResponseData responseData = new ResponseData();
             responseData.setJwt(checkJwtResult.getCheckJwt().getJwt());
+            responseData.setAttendance(attendance);
 
             Response response = new Response(new ResponseBody(Naming.attendance, Naming.endTime, Naming.success, "successful", responseData));
             MyCommon.printMessage(response.toString());
@@ -132,11 +134,29 @@ public class AttendanceHandler {
 
             session.beginTransaction();
 
-            String searchQuery = "from Attendance where id = " + keywordId + " or date like '%" + keyword +
+            String searchQuery = "from Attendance where (id = " + keywordId + " or date like '%" + keyword +
                     "%' or startTime like '%" + keyword + "%' or endTime like '%" + keyword + "%' or minutes = " + keywordId +
-                    " or byUuid like '%" + keyword + "%' order by id desc";
+                    " or byUuid like '%" + keyword + "%')";
 
-            String query = (keyword == null) ? "from Attendance order by id desc" : searchQuery;
+            String role = (String) session.createQuery("select role from Employees where userUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
+            boolean adminOrHr = role.equals(Naming.admin) || role.equals(Naming.hr);
+            if (adminOrHr) {
+                searchQuery += " order by id desc";
+            } else {
+                searchQuery += " and (byUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "') order by id desc";
+            }
+
+            String query;
+
+            if (keyword == null) {
+                if (adminOrHr) {
+                    query = "from Attendance order by id desc";
+                } else {
+                    query = "from Attendance where byUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "' order by id desc";
+                }
+            } else {
+                query = searchQuery;
+            }
 
             String countQuery = (keyword == null) ? "select count(id) from Attendance" : "select count(id) " + searchQuery;
             Long count = (Long) session.createQuery(countQuery).uniqueResult();
@@ -171,6 +191,9 @@ public class AttendanceHandler {
 
     public String update(JsonObject data, CheckJwtResult checkJwtResult) {
         try (Session session = factory.withOptions().interceptor(new CustomInterceptor(checkJwtResult.getCheckJwt().getCompany())).openSession()) {
+
+            String role = (String) session.createQuery("select role from Employees where userUuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
+            if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) throw new RuntimeException("access deny");
 
             int id = data.get(Naming.ID).getAsInt();
             String date = data.get(Naming.DATE).getAsString();
@@ -219,7 +242,7 @@ public class AttendanceHandler {
 
             session.beginTransaction();
 
-            String role = (String) session.createQuery("select role from Profiles where uuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
+            String role = (String) session.createQuery("select role from Employees where uuid = '" + checkJwtResult.getCheckJwt().getUuid() + "'").uniqueResult();
 
             if (!role.equals(Naming.admin) && !role.equals(Naming.hr)) {
                 Response response = new Response(new ResponseBody(Naming.attendance, Naming.delete, Naming.fail, "access denied", null));

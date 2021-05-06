@@ -3,7 +3,8 @@
 "object": "attendance",
 "method": "start",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        .eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0YTFlYmE0NS1jNDYxLTRlZjAtYmE1Ni1kMmZkNjgxYWY4ZjEiLCJpYXQiOjE2MjAxOTc1NjgsImV4cCI6MTYyMDIxOTE2OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ChZJFnq1V80diUFkbys5AvyO8szpkEbr4CF5FUPu3l8",
         "description": "description",
         "reason": "reason",
         "attachment": "attachment"
@@ -15,7 +16,8 @@
 "object": "attendance",
 "method": "end",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        .eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0YTFlYmE0NS1jNDYxLTRlZjAtYmE1Ni1kMmZkNjgxYWY4ZjEiLCJpYXQiOjE2MjAxOTc1NjgsImV4cCI6MTYyMDIxOTE2OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ChZJFnq1V80diUFkbys5AvyO8szpkEbr4CF5FUPu3l8",
         "description": "description",
         "reason": "reason",
         "attachment": "attachment"
@@ -27,7 +29,8 @@
 "object": "attendance",
 "method": "get",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        .eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0YTFlYmE0NS1jNDYxLTRlZjAtYmE1Ni1kMmZkNjgxYWY4ZjEiLCJpYXQiOjE2MjAxOTc1NjgsImV4cCI6MTYyMDIxOTE2OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ChZJFnq1V80diUFkbys5AvyO8szpkEbr4CF5FUPu3l8",
         "page": 1,
         "limit": 10,
         "keyword": "This is remark"
@@ -39,7 +42,8 @@
 "object": "attendance",
 "method": "update",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        .eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0YTFlYmE0NS1jNDYxLTRlZjAtYmE1Ni1kMmZkNjgxYWY4ZjEiLCJpYXQiOjE2MjAxOTc1NjgsImV4cCI6MTYyMDIxOTE2OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ChZJFnq1V80diUFkbys5AvyO8szpkEbr4CF5FUPu3l8",
         "id": 5,
         "date": "2021-04-12",
         "startTime": "16:59:34",
@@ -52,7 +56,8 @@
 "object": "attendance",
 "method": "delete",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw",
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+        .eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0YTFlYmE0NS1jNDYxLTRlZjAtYmE1Ni1kMmZkNjgxYWY4ZjEiLCJpYXQiOjE2MjAxOTc1NjgsImV4cCI6MTYyMDIxOTE2OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ChZJFnq1V80diUFkbys5AvyO8szpkEbr4CF5FUPu3l8",
         "id": 5
     }
 }

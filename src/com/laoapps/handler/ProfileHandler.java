@@ -46,6 +46,7 @@ public class ProfileHandler {
             Profiles profiles = new Profiles();
             profiles.setPhoneNumber(checkUserJwtResult.getPhoneNumber());
             profiles.setUserUuid(checkUserJwtResult.getUuid());
+            profiles.setCreatedAt(MyCommon.currentTime());
             setProfile(data, profiles);
 
             session.save(profiles);
@@ -70,11 +71,13 @@ public class ProfileHandler {
     }
 
     private void setProfile(JsonObject data, Profiles profiles) {
-        String email = null, idCard = null, passport = null;
+        String email = null, idCard = null, passport = null, address = null, birthDate = null;
 
         if (data.has(Naming.EMAIL)) email = data.get(Naming.EMAIL).getAsString();
         if (data.has(Naming.idCard)) idCard = data.get(Naming.idCard).getAsString();
         if (data.has(Naming.PASSPORT)) passport = data.get(Naming.PASSPORT).getAsString();
+        if (data.has(Naming.ADDRESS)) address = data.get(Naming.ADDRESS).getAsString();
+        if (data.has(Naming.birthDate)) birthDate = data.get(Naming.birthDate).getAsString();
 
         if (!Strings.isNullOrEmpty(email)) {
             String regex = "^(.+)@(.+)$";
@@ -84,16 +87,16 @@ public class ProfileHandler {
             profiles.setEmail(email);
         }
 
-        String birthDate = data.get(Naming.birthDate).getAsString();
-        if (LocalDate.parse(birthDate).isAfter(LocalDate.now())) throw new RuntimeException("birth date invalid");
+        if (birthDate != null) {
+            if (LocalDate.parse(birthDate).isAfter(LocalDate.now())) throw new RuntimeException("birth date invalid");
+        }
 
         profiles.setFirstName(data.get(Naming.firstName).getAsString());
         profiles.setLastName(data.get(Naming.lastName).getAsString());
-        profiles.setAddress(data.get(Naming.ADDRESS).getAsString());
-        profiles.setBirthDate(data.get(Naming.birthDate).getAsString());
         if (!Strings.isNullOrEmpty(idCard)) profiles.setIdCard(idCard);
         if (!Strings.isNullOrEmpty(passport)) profiles.setPassport(passport);
-        profiles.setCreatedAt(MyCommon.currentTime());
+        if (!Strings.isNullOrEmpty(address)) profiles.setAddress(address);
+        if (!Strings.isNullOrEmpty(birthDate)) profiles.setBirthDate(birthDate);
         profiles.calculateAge();
     }
 

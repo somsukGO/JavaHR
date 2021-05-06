@@ -119,4 +119,8 @@ public class MyCommon {
 
     }
 
+    public static ArrayList<String> roles() {
+        return new ArrayList<>(Arrays.asList("hr", "employee"));
+    }
+
 }

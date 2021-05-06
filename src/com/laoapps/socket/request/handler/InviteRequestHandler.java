@@ -3,10 +3,8 @@ package com.laoapps.socket.request.handler;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.laoapps.handler.InviteHandler;
-import com.laoapps.models.CheckJwtResult;
 import com.laoapps.socket.response.Response;
 import com.laoapps.socket.response.ResponseBody;
-import com.laoapps.utils.MyCommon;
 import com.laoapps.utils.Naming;
 
 import java.io.IOException;
@@ -47,11 +45,12 @@ public class InviteRequestHandler {
             case "reject":
                 return inviteHandler.reject(data);
 
+            // TODO: later
             case "update":
                 return inviteHandler.update(data, null);
 
             case "delete":
-                return inviteHandler.delete(data, null);
+                return inviteHandler.delete(data);
 
             default:
                 ResponseBody responseBody = new ResponseBody(Naming.INVITE, method, 0, "method not exists", null);

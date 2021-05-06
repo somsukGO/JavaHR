@@ -1,11 +1,12 @@
 package com.laoapps.handler;
 
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.laoapps.database.connector.CustomInterceptor;
 import com.laoapps.database.connector.HibernateConnector;
 import com.laoapps.database.entity.Companies;
-import com.laoapps.database.entity.Personnel;
+import com.laoapps.database.entity.Employees;
 import com.laoapps.database.entity.Profiles;
 import com.laoapps.models.CheckUserJwt;
 import com.laoapps.models.CheckUserJwtResult;
@@ -68,7 +69,7 @@ public class CompanyHandler {
             session.save(company);
 
             TableHandler tableHandler = TableHandler.getInstance();
-            session.createSQLQuery(tableHandler.createPersonnelTable(uuid)).executeUpdate();
+            session.createSQLQuery(tableHandler.createEmployeeHandler(uuid)).executeUpdate();
             session.createSQLQuery(tableHandler.createDepartmentTable(uuid)).executeUpdate();
             session.createSQLQuery(tableHandler.createAttendanceTable(uuid)).executeUpdate();
 
@@ -97,24 +98,24 @@ public class CompanyHandler {
             session.beginTransaction();
 
             Profiles profile = session.get(Profiles.class, checkUserJwtResult.getUuid());
-            Personnel personnel = new Personnel();
-            personnel.setFirstName(profile.getFirstName());
-            personnel.setLastName(profile.getLastName());
-            personnel.setPhoneNumber(profile.getPhoneNumber());
-            personnel.setEmail(profile.getEmail());
-            personnel.setAddress(profile.getAddress());
-            personnel.setBirthDate(profile.getBirthDate());
-            personnel.setIdCard(profile.getIdCard());
-            personnel.setPassport(profile.getPassport());
-            personnel.setCreatedAt(MyCommon.currentTime());
-            personnel.setPosition(Naming.admin);
-            personnel.setRole(Naming.admin);
-            personnel.setDepartmentUuid(Naming.admin);
-            personnel.setSalary(Naming.admin);
-            personnel.setUserUuid(checkUserJwtResult.getUuid());
-            personnel.setUuid(MyCommon.generateUuid());
+            Employees employees = new Employees();
+            employees.setFirstName(profile.getFirstName());
+            employees.setLastName(profile.getLastName());
+            if (!Strings.isNullOrEmpty(profile.getPhoneNumber())) employees.setPhoneNumber(profile.getPhoneNumber());
+            if (!Strings.isNullOrEmpty(profile.getEmail())) employees.setEmail(profile.getEmail());
+            if (!Strings.isNullOrEmpty(profile.getAddress())) employees.setAddress(profile.getAddress());
+            if (!Strings.isNullOrEmpty(profile.getBirthDate())) employees.setBirthDate(profile.getBirthDate());
+            if (!Strings.isNullOrEmpty(profile.getIdCard())) employees.setIdCard(profile.getIdCard());
+            if (!Strings.isNullOrEmpty(profile.getPassport())) employees.setPassport(profile.getPassport());
+            employees.setCreatedAt(MyCommon.currentTime());
+            employees.setPosition(Naming.admin);
+            employees.setRole(Naming.admin);
+            employees.setDepartmentUuid(Naming.admin);
+            employees.setSalary(Naming.admin);
+            employees.setUserUuid(checkUserJwtResult.getUuid());
+            employees.setUuid(MyCommon.generateUuid());
 
-            session.save(personnel);
+            session.save(employees);
 
             session.getTransaction().commit();
 
@@ -247,7 +248,46 @@ public class CompanyHandler {
     }
 
     public String getJoinedCompany(JsonObject data) {
-        return "getJoinedCompany";
+
+        try (Session session = factory.openSession()) {
+
+            CheckUserJwt checkUserJwt = new CheckUserJwt(Naming.user, Naming.checkJwt, data.get(Naming.jwt).getAsString());
+            JsonObject getResponse = gson.fromJson(new SocketClient().sendAndReceive(gson.toJson(checkUserJwt)),
+                    JsonObject.class);
+            CheckUserJwtResult checkUserJwtResult = new CheckUserJwtResult(getResponse);
+
+            if (!checkUserJwtResult.isPass()) return gson.toJson(getResponse);
+
+            session.beginTransaction();
+
+            @SuppressWarnings("unchecked")
+            ArrayList<String> companiesUuid = (ArrayList<String>) session.createQuery("select companyUuid from Invite where toUuid = '" +
+                    checkUserJwtResult.getUuid() + "' and status = '" + Naming.accepted + "' order by id desc").getResultList();
+
+            ArrayList<Companies> companies = new ArrayList<>();
+            companiesUuid.forEach(companyUuid -> {
+                Companies company = session.get(Companies.class, companyUuid);
+                companies.add(company);
+            });
+
+            session.getTransaction().commit();
+
+            ResponseData responseData = new ResponseData();
+            responseData.setJwt(checkUserJwtResult.getJwt());
+            responseData.setCompanies(companies);
+
+            Response response = new Response(new ResponseBody(Naming.company, Naming.getOwnedCompany, Naming.success,
+                    "successful", responseData));
+            MyCommon.printMessage(response.toString());
+            return gson.toJson(response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Response response = new Response(new ResponseBody(Naming.company, Naming.getOwnedCompany, Naming.fail, e.getMessage(), null));
+            MyCommon.printMessage(response.toString());
+
+            return gson.toJson(response);
+        }
     }
 
     // TODO

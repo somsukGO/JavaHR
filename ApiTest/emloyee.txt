@@ -1,27 +1,12 @@
-=> create
-{
-"object": "employee",
-"method": "invite",
-"data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw"
-    }
-}
-
-=> getById
-{
-"object": "employee",
-"method": "getById",
-"data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw"
-    }
-}
-
 => get
 {
 "object": "employee",
 "method": "get",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw"
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0YTFlYmE0NS1jNDYxLTRlZjAtYmE1Ni1kMmZkNjgxYWY4ZjEiLCJpYXQiOjE2MjAxOTc1NjgsImV4cCI6MTYyMDIxOTE2OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ChZJFnq1V80diUFkbys5AvyO8szpkEbr4CF5FUPu3l8",
+                "page": 1,
+                "limit": 10
     }
 }
 
@@ -29,7 +14,20 @@
 "object": "employee",
 "method": "update",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw"
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0YTFlYmE0NS1jNDYxLTRlZjAtYmE1Ni1kMmZkNjgxYWY4ZjEiLCJpYXQiOjE2MjAxOTc1NjgsImV4cCI6MTYyMDIxOTE2OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ChZJFnq1V80diUFkbys5AvyO8szpkEbr4CF5FUPu3l8",
+        "employeeUuid": "test",
+        "firstName": "firstName",
+        "lastName": "lastName",
+        "phoneNumber": "phoneNumber",
+        "email": "email",
+        "address": "address",
+        "birthDate": "1990-10-10",
+        "idCard": "idCard",
+        "passport": "passport",
+        "position": "position",
+        "salary": 2000,
+        "role": "employee",
+        "departmentUuid": "96ae975490"
     }
 }
 
@@ -37,6 +35,7 @@
 "object": "employee",
 "method": "delete",
 "data": {
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiIzOGNhZDVkZC1jZDA4LTRiNGEtODE1Zi1mZGE1NjJiZjFmYTgiLCJpYXQiOjE2MTk3Njg5MzAsImV4cCI6MTYxOTc5MDUzMCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiI0OTE4ZjRlN2I1Iiwic2lnbmF0dXJlIjoiNGNlY2E0NzFlZSIsInBsYXRmb3JtIjoiSFIifQ.nlZjRcEYcv2LszAkKmWatSXUS05cOVa8p1AnWTxEOTw"
+        "companyJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZXJ2ZXIiLCJqdGkiOiI0YTFlYmE0NS1jNDYxLTRlZjAtYmE1Ni1kMmZkNjgxYWY4ZjEiLCJpYXQiOjE2MjAxOTc1NjgsImV4cCI6MTYyMDIxOTE2OCwic3ViIjoiMSIsInBob25lTnVtYmVyIjoiMSIsInV1aWQiOiJjNmY5MzhjMzkxIiwiY29tcGFueSI6IjVhOTQ3NzMyMjYifQ.ChZJFnq1V80diUFkbys5AvyO8szpkEbr4CF5FUPu3l8",
+        "employeeUuid": ""
     }
 }
