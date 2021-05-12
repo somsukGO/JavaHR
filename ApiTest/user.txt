@@ -5,7 +5,7 @@
 "data": {
         "phoneNumber": "1",
         "password": "password",
-        "platform": "HR"
+        "platform": "hr"
     }
 }
 
@@ -16,7 +16,7 @@
 "data": {
         "phoneNumber": "1",
         "password": "password",
-        "platform": "HR"
+        "platform": "hr"
     }
 }
 
